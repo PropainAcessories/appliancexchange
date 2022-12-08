@@ -74,12 +74,21 @@ const resolvers = {
         }
     },
     Mutation: {
-        /** 
-         ADD MUTATIONS
-        
-         PIGS IN SPAAAAAAAAACE!
-        
-        **/
+        addUser: async (parent, args) => {
+
+        },
+        addOrder: async (parent, { products }, context) => {
+
+        },
+        updateUser: async (parent, args, context) => {
+            
+        },
+        updateProduct: async (parent, { _id, quantity }) => {
+
+        },
+        login: async (parent, { email, password }) => {
+            
+        }
     }
 };
 

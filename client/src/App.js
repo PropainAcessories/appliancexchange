@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Nav from './components/Navbar';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
@@ -36,42 +36,44 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
+// Routes here
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <NavBar />
-        <Routes>
-          <Route
-          path='/'
-          element={<Home />}
-          />
-          <Route
-          path='/login'
-          element={<Login />}
-          />          
-          <Route
-          path='/signup'
-          element={<Signup />}
-          />
-          <Route
-          path='/success'
-          element={<Success />}
-          />
-          <Route
-          path='/Orders'
-          element={<OrderPage />}
-          />
-          <Route
-          path='/products/:id'
-          element={<SingleItem />}
-          />
-          <Route
-          path='*'
-          element={<Nothing />}
-          />
-        </Routes>
+        <div>
+          <Nav/>
+          <div>
+            <Route
+            path='/'
+            element={<Home />}
+            />
+            <Route
+            path='/login'
+            element={<Login />}
+            />          
+            <Route
+            path='/signup'
+            element={<Signup />}
+            />
+            <Route
+            path='/success'
+            element={<Success />}
+            />
+            <Route
+            path='/Orders'
+            element={<OrderPage />}
+            />
+            <Route
+            path='/products/:id'
+            element={<SingleItem />}
+            />
+            <Route
+            path='*'
+            element={<Nothing />}
+            />
+          </div>
+        </div>  
       </Router>
     </ApolloProvider>
   );
