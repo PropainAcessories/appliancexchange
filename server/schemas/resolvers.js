@@ -72,6 +72,14 @@ const resolvers = {
                 })
             }
         }
+    },
+    Mutation: {
+        /** 
+         ADD MUTATIONS
+        
+         PIGS IN SPAAAAAAAAACE!
+        
+        **/
     }
 };
 
