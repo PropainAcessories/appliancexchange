@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from './components/Navbar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import NavBar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
@@ -9,6 +9,7 @@ import OrderPage from './pages/OrderPage';
 import Success from './pages/Success';
 import SingleItem from './pages/SingleItem';
 import Nothing from './pages/Nothing';
+// TODO Import something from GlobalState after you make it.
 
 import {
   ApolloClient,
@@ -41,37 +42,39 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Nav />
-          <div>
-            <Route
-            path='/'
-            element={<Home />}
-            />
-            <Route
-            path='/login'
-            element={<Login />}
-            />          
-            <Route
-            path='/signup'
-            element={<Signup />}
-            />
-            <Route
-            path='/success'
-            element={<Success />}
-            />
-            <Route
-            path='/Orders'
-            element={<OrderPage />}
-            />
-            <Route
-            path='/products/:id'
-            element={<SingleItem />}
-            />
-            <Route
-            path='*'
-            element={<Nothing />}
-            />
+        <div className="flex-column justify-flex-start min-100-vh">
+          <NavBar />
+          <div className='container'>
+            <Switch>
+              <Route
+              path='/'
+              element={<Home />}
+              />
+              <Route
+              path='/login'
+              element={<Login />}
+              />          
+              <Route
+              path='/signup'
+              element={<Signup />}
+              />
+              <Route
+              path='/success'
+              element={<Success />}
+              />
+              <Route
+              path='/Orders'
+              element={<OrderPage />}
+              />
+              <Route
+              path='/products/:id'
+              element={<SingleItem />}
+              />
+              <Route
+              path='*'
+              element={<Nothing />}
+              />
+            </Switch>
           </div>
         </div>  
       </Router>

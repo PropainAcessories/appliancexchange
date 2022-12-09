@@ -67,7 +67,7 @@ function Login(props) {
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
 export default Login;
