@@ -28,4 +28,4 @@ db.once('open', async () => {
     await User.create({
         
     })
-})
+});

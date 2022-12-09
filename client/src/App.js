@@ -42,7 +42,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Nav/>
+          <Nav />
           <div>
             <Route
             path='/'
