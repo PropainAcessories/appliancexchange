@@ -10,7 +10,7 @@ import {
     CLEAR_CART,
     TOGGLE_CART
 } from './actions';
-
+// Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
         case UPDATE_PRODUCTS:

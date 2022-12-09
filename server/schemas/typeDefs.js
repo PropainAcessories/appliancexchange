@@ -1,5 +1,5 @@
 const { gql } = require('apollo-server-express');
-// Start to fill this out AFTER you finish the models otherwise you will fucking regret it.
+// Add needed models once built; make queries and mutations for said models; ALSO SEED THE FUCKING DATABASE!!!!!!
 const typeDefs = gql`
   type Category {
     _id: ID
@@ -28,6 +28,10 @@ const typeDefs = gql`
     email: String
     orders: [Order]
   }
+
+  type Seller {}
+
+  type Transaction {}
 
   type Checkout {
     session: ID

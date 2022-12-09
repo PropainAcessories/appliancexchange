@@ -2,7 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Order, Product, Category } = require('../models');
 const signToken = require('../utils/auth');
 const stripe = require('stripe')(/*TODO: Read the documentation for whatever the fuck goes in here. */);
-
+// Selling stuff will definitely involve stripe or something I don't fucking know; I'm you.
 const resolvers = {
     Query: {
         categories: async () => {
