@@ -1,11 +1,10 @@
 import React from "react";
+import Category from '../components/Categories';
 
 function Home() {
     return (
         <div className="container">
-            <div>
-                Hello World
-            </div>
+            <Category />
         </div>
     );
 };

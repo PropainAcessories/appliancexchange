@@ -6,12 +6,12 @@ const Order = require('./Order');
 // Add other constraints to password later.
 // Payment stuff likely goes here
 const userSchema = new Schema({
-    lastName: {
+    firstName: {
         type: String,
         required: true,
         trim: true
     },
-    firstName: {
+    lastName: {
         type: String,
         required: true,
         trim: true

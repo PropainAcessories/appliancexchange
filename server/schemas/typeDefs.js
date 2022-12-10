@@ -42,8 +42,6 @@ const typeDefs = gql`
     phoneNumber: String
   }
 
-  type Sale {}
-
   type Checkout {
     session: ID
   }
@@ -63,7 +61,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(name: String!, lastName: String, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(products: [ID]!): Order
     addProduct()
     updateUser(name: String, email: String, password: String): User

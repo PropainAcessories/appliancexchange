@@ -10,6 +10,7 @@ import Success from './pages/Success';
 import SingleItem from './pages/SingleItem';
 import Nothing from './pages/Nothing';
 // TODO Import something from GlobalState after you make it.
+import { StoreProvider } from './utils/GlobalState';
 
 import {
   ApolloClient,
@@ -42,9 +43,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div>
           <NavBar />
-          <div className='container'>
+          <StoreProvider>
             <Switch>
               <Route
               path='/'
@@ -75,7 +76,7 @@ function App() {
               element={<Nothing />}
               />
             </Switch>
-          </div>
+          </StoreProvider>
         </div>  
       </Router>
     </ApolloProvider>
