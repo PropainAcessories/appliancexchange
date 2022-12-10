@@ -16,7 +16,7 @@ function NavBar () {
                 <NavLink
                 activeClassName='navbar__link--active'
                 className='navbar__link'
-                to='/orders'>
+                to='/login'>
                     Login
                 </NavLink>
                 <NavLink
