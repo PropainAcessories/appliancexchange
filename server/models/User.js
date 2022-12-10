@@ -6,7 +6,12 @@ const Order = require('./Order');
 // Add other constraints to password later.
 // Payment stuff likely goes here
 const userSchema = new Schema({
-    name: {
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    firstName: {
         type: String,
         required: true,
         trim: true
@@ -15,6 +20,19 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    phoneNumber: {
+        type: String
+    },
+    seller: {
+        type: Schema.Types.ObjectId,
+        ref: 'Seller',
+        default: null
+    },
+    role: {
+        type: String,
+        defualt: ROLE_MEMBER,
+        enum: [ROLE_ADMIN, ROLE_MEMBER, ROLE_SELLER]
     },
     password: {
         type: String,
