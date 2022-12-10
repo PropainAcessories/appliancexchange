@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Order, Product, Category } = require('../models');
+const { User, Order, Product, Category, Review, Billing, Seller } = require('../models');
 const signToken = require('../utils/auth');
 const stripe = require('stripe')(/*TODO: Read the documentation for whatever the fuck goes in here. */);
 // Selling stuff will definitely involve stripe or something I don't fucking know; I'm you.
@@ -24,6 +24,9 @@ const resolvers = {
 
             return await Product.find(params).populate('category');
         },
+        review: async (parent, { _id }) => {
+            return await Review.findById(_id).populate('product');
+        },
         product: async (parent, { _id }) => {
             return await Product.findById(_id).populate('category');
         },
@@ -40,6 +43,18 @@ const resolvers = {
             }
 
             throw new AuthenticationError('Please Log in or Create an Account.');
+        },
+        seller: async (parent, { _id }, context) => {
+            if (context.user) {
+                const seller = await Seller.findById(context.user._id).populate({
+                    path: 'seller.users',
+                    populate: 'product'
+                });
+
+                return user.seller.id(_id);
+            }
+            
+            throw new AuthenticationError('Log in please.');
         },
         order: async (parent, { _id }, context) => {
             if (context.user) {
@@ -97,6 +112,7 @@ const resolvers = {
                 return await User.findByIdAndUpdate(context.user._id, args, { new: true });
             }
 
+
             throw new AuthenticationError('Please Log in to edit your account.');
         },
         updateProduct: async (parent, { _id, quantity }) => {
@@ -121,8 +137,10 @@ const resolvers = {
 
             return { token, user };
         },
-        /* addProduct: async (parent, { product }, context) => {
-            
+        /* addProduct: async (parent, { seller }, context) => {
+            if (context.user === context.seller) {
+                const product = await Product.create(seller)
+            }
          } */
     }
 };
