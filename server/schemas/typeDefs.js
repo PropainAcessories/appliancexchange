@@ -34,7 +34,13 @@ const typeDefs = gql`
     orders: [Order]
   }
 
-  type Seller {}
+  type Seller {
+    _id: ID
+    name: String
+    email: String
+    address: String
+    phoneNumber: String
+  }
 
   type Sale {}
 

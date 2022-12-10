@@ -31,8 +31,8 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        defualt: ROLE_MEMBER,
-        enum: [ROLE_ADMIN, ROLE_MEMBER, ROLE_SELLER]
+        defualt: 'ROLE_MEMBER',
+        enum: ['ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_SELLER']
     },
     password: {
         type: String,
