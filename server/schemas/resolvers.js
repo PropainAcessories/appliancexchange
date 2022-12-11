@@ -3,7 +3,6 @@ const { User, Order, Product, Category } = require('../models');
 const signToken = require('../utils/auth');
 const stripe = require('stripe')(/*TODO: Read the documentation for whatever the fuck goes in here. */);
 // Selling stuff will definitely involve stripe or something I don't fucking know; I'm you.
-// Making user type seller in mutations or auth? I'll ask someone smart or google or something; I have other problems.
 const resolvers = {
     Query: {
         categories: async () => {
@@ -91,34 +90,17 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, args) => {
-            const user = await User.create(args);
-            const token = signToken(user);
 
-            return { token, user };
         },
         addOrder: async (parent, { products }, context) => {
-            if (context.user) {
-                const order = new Order({ products });
 
-                await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-                return order;
-            }
-
-            throw new AuthenticationError('Please Log in to place an order.')
         },
         updateUser: async (parent, args, context) => {
-            if (context.user) {
-                return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-            }
+            
 
-
-            throw new AuthenticationError('Please Log in to edit your account.');
         },
         updateProduct: async (parent, { _id, quantity }) => {
-            const decrement = Math.abs(quantity) * -1;
 
-            return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -137,10 +119,8 @@ const resolvers = {
 
             return { token, user };
         },
-        /* addProduct: async (parent, { seller }, context) => {
-            if (context.user === context.seller) {
-                const product = await Product.create(seller)
-            }
+        /* addProduct: async (parent, { product }, context) => {
+            
          } */
     }
 };

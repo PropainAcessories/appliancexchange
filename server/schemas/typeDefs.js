@@ -34,6 +34,9 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  type Seller {}
+
+  type Transaction {}
   type Seller {
     _id: ID
     name: String
