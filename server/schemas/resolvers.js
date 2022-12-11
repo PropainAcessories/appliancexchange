@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Order, Product, Category, Review, Billing, Seller } = require('../models');
+const { User, Order, Product, Category } = require('../models');
 const signToken = require('../utils/auth');
 const stripe = require('stripe')(/*TODO: Read the documentation for whatever the fuck goes in here. */);
 // Selling stuff will definitely involve stripe or something I don't fucking know; I'm you.
@@ -44,18 +44,18 @@ const resolvers = {
 
             throw new AuthenticationError('Please Log in or Create an Account.');
         },
-        seller: async (parent, { _id }, context) => {
-            if (context.user) {
-                const seller = await Seller.findById(context.user._id).populate({
-                    path: 'seller.users',
-                    populate: 'product'
-                });
+        // seller: async (parent, { _id }, context) => {
+        //     if (context.user) {
+        //         const seller = await Seller.findById(context.user._id).populate({
+        //             path: 'seller.users',
+        //             populate: 'product'
+        //         });
 
-                return user.seller.id(_id);
-            }
+        //         return user.seller.id(_id);
+        //     }
             
-            throw new AuthenticationError('Log in please.');
-        },
+        //     throw new AuthenticationError('Log in please.');
+        // },
         order: async (parent, { _id }, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
