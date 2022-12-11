@@ -23,9 +23,6 @@ const resolvers = {
 
             return await Product.find(params).populate('category');
         },
-        review: async (parent, { _id }) => {
-            return await Review.findById(_id).populate('product');
-        },
         product: async (parent, { _id }) => {
             return await Product.findById(_id).populate('category');
         },
@@ -90,13 +87,26 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
 
+            return { token, user };
         },
         addOrder: async (parent, { products }, context) => {
+            if (context.user) {
+                const order = new Order({ products });
 
+                await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+                return order;
+            }
+
+            throw new AuthenticationError('Please Log in to place an order.');
         },
         updateUser: async (parent, args, context) => {
-            
+            if (context.user) {
+                return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+            }
 
         },
         updateProduct: async (parent, { _id, quantity }) => {
