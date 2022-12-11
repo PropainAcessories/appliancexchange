@@ -17,6 +17,16 @@ export const QUERY_PRODUCTS = gql`
   }
 `;
 
+export const QUERY_SELLER = gql `
+  seller {
+    _id
+    address
+    email
+    name
+    phoneNumber
+  }
+`;
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
     checkout(products: $products) {

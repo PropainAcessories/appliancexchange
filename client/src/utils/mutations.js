@@ -38,10 +38,48 @@ export const ADD_USER = gql`
     addUser(
       name: $name
       email: $email
+      role: $role
       password: $password
     ) {
       token
       user {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_SELLER = gql`
+  mutation AddSeller(
+    $name: String!
+    $email: String!
+    $address: String!
+    $phoneNumber: String!
+  ) {
+    addSeller(
+      name: $name
+      email: $email
+      address: $address
+      phoneNumber: $phonenumber
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_PRODUCT = gql`
+  mutation AddProduct($category: [ID]!) {
+    addProduct(category: $category) {
+      name
+      description
+      seller
+      image
+      quantity
+      price
+      category {
         _id
       }
     }
