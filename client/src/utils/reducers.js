@@ -1,8 +1,6 @@
 import { useReducer } from "react";
 import {
     UPDATE_PRODUCTS,
-    ADD_SELLER,
-    ADD_PRODUCT,
     ADD_TO_CART,
     UPDATE_CART_QUANTITY,
     REMOVE_FROM_CART,
@@ -10,26 +8,19 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
+    ADD_REVIEW,
     TOGGLE_CART
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
-        case ADD_SELLER: {
-            const newSeller = { ...action.payload };
+        case ADD_REVIEW: {
+            const newReview = { ...action.payload };
 
             return {
                 ...state,
-                sellers: [...state.sellers, newSeller],
-            };
-        }
-        case ADD_PRODUCT: {
-            const newProduct = { ...action.payload };
-
-            return {
-                ...state,
-                products: [...state.products, newProduct]
-            };
+                review: [...state, newReview]
+            }
         }
         case UPDATE_PRODUCTS:
             return {

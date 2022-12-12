@@ -47,14 +47,15 @@ export const ADD_BILLING = gql`
 
 export const ADD_USER = gql`
   mutation AddUser(
-    $name: String!
+    $firstName: String!
+    $lastName: String!
     $email: String!
     $password: String!
   ) {
     addUser(
-      name: $name
+      firstName: $firstName
+      lastName: $lastName
       email: $email
-      role: $role
       password: $password
     ) {
       token

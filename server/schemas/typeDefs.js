@@ -32,6 +32,7 @@ const typeDefs = gql`
     seller: ID
     role: String
     orders: [Order]
+    billing: [Billing]
   }
 
   type Seller {

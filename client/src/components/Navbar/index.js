@@ -6,7 +6,7 @@ function NavBar () {
         <div className='navbar'>
             <div className='navbar-left'>
                 <NavLink
-                activeClassName='navbar__link--active'
+                activeclassname='navbar__link--active'
                 className='navbar__link'
                 to='/'>
                     Home
@@ -14,13 +14,13 @@ function NavBar () {
             </div>
             <div className='navbar-right'>
                 <NavLink
-                activeClassName='navbar__link--active'
+                activeclassname='navbar__link--active'
                 className='navbar__link'
                 to='/login'>
                     Login
                 </NavLink>
                 <NavLink
-                activeClassName='navbar__link--active'
+                activeclassname='navbar__link--active'
                 className='navbar__link'
                 to='/signup'>
                     Sign Up

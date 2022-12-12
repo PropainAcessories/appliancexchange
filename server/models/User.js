@@ -34,6 +34,11 @@ const userSchema = new Schema({
         defualt: 'ROLE_MEMBER',
         enum: ['ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_SELLER']
     },
+    billing: {
+        type: Schema.Types.ObjectId,
+        ref: 'Billing',
+        default: null
+    },
     password: {
         type: String,
         required: true,
