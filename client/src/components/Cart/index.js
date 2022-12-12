@@ -8,7 +8,7 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 
-const stripePromise = loadStripe(/*Code that goes here be sure to get one */);
+const stripePromise = loadStripe('pk_test_51MEEGRHzZuwtjjIt349YOKmuyJDtsPzI7qUzX2CrIbmkQ0bVYVngAkVqYiVyhGgvLwRZFKVeUazeGZkl6Cg00qMW00ckaTOMPN');
 
 const Cart = () => {
     const [state, dispatch] = useStoreContext();
@@ -34,7 +34,7 @@ const Cart = () => {
     }, [state.cart.length, dispatch]);
 
     function toggleCart() {
-        dispatch({ type: TOGGLE_CART});
+        dispatch({ type: TOGGLE_CART });
     }
 
     function calculateTotal() {
