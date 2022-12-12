@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './components/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
@@ -46,36 +46,36 @@ function App() {
         <div>
           <StoreProvider>
             <NavBar />
-            <Switch>
+            <Routes>
               <Route
-              path='/'
-              element={<Home />}
+              exact path='/'
+              element={<Home/>}
               />
               <Route
               path='/login'
-              element={<Login />}
+              element={<Login/>}
               />          
               <Route
               path='/signup'
-              element={<Signup />}
+              element={<Signup/>}
               />
               <Route
               path='/success'
-              element={<Success />}
+              element={<Success/>}
               />
               <Route
               path='/Orders'
-              element={<OrderPage />}
+              element={<OrderPage/>}
               />
               <Route
               path='/products/:id'
-              element={<SingleItem />}
+              element={<SingleItem/>}
               />
               <Route
               path='*'
-              element={<Nothing />}
+              element={<Nothing/>}
               />
-            </Switch>
+            </Routes>
           </StoreProvider>
         </div>  
       </Router>
