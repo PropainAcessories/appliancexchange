@@ -18,12 +18,14 @@ export const QUERY_PRODUCTS = gql`
 `;
 
 export const QUERY_SELLER = gql `
-  seller {
-    _id
-    address
-    email
-    name
-    phoneNumber
+  query{
+    seller {
+      _id
+      address
+      email
+      name
+      phoneNumber
+    }
   }
 `;
 
@@ -36,43 +38,49 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-  products {
-    _id
-    name
-    description
-    seller
-    price
-    quantity
-    category {
+  query {
+    products {
+      _id
       name
+      description
+      seller
+      price
+      quantity
+      category {
+        name
+      }
     }
   }
 `;
 
 export const QUERY_CATEGORIES = gql`
-  categories {
-    _id
-    name
+  query {
+    categories {
+      _id
+      name
+    }
   }
 `;
 
 export const QUERY_USER = gql`
-  user {
-    firstName
-    lastName
-    email
-    role
-    orders {
-      _id
-      purchaseDate
-      products {
+  query {
+    user {
+      firstName
+      lastName
+      email
+      role
+      orders {
         _id
-        name
-        description
-        seller
-        price
-        quantity
-        image
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          seller
+          price
+          quantity
+          image
+        }
       }
     }
   }

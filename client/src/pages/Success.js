@@ -12,12 +12,29 @@ function Success() {
             const products = cart.map((item) => item._id);
 
             if (products.length) {
-                const { data } = await addOrder({
-                    variables: { products }
-                })
+                const { data } = await addOrder({ variables: { products } });
+                const productData = data.addOrder.products;
+
+                productData.forEach((item) => {
+                    idbPromise('cart', 'delete', item);
+                });
             }
+
+            setTimeout(() => {
+                window.location.assign('/');
+            }, 3000);
         }
-    })
+
+        saveOrder();
+    }, [addOrder]);
+
+    return (
+        <div>
+            <h1>Order Placed!</h1>
+            <h2>Thank you for your business.</h2>
+            <h3>Redirecting to HomePage.</h3>
+        </div>
+    )
 };
 
 export default Success;
