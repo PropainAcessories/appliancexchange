@@ -22,7 +22,7 @@ function OrderPage() {
                             {user.firstName} {user.lastName}
                         </h2>
                         {user.orders.map((order) => (
-                            <div key={order._id} className='mt-2 mb-2'>
+                            <div key={order._id} className='my-2'>
                                 <h2>
                                     {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                                 </h2>

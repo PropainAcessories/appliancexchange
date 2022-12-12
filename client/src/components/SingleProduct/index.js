@@ -37,7 +37,7 @@ function SingleProduct(item) {
     };
 
     return (
-        <div className="card p-1">
+        <div className="card px-1 py-1">
             <NavLink to={`/products/${_id}`}>
                 <img
                 alt={name}

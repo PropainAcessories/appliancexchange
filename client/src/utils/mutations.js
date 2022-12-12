@@ -29,6 +29,22 @@ export const ADD_ORDER = gql`
   }
 `;
 
+export const ADD_BILLING = gql`
+  mutation Mutation($user: [ID]!) {
+    addBilling(user: $user) {
+      _id
+      address
+      city
+      state
+      zipCode
+      created
+      updated
+      user
+      isDefault
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation AddUser(
     $name: String!
@@ -66,6 +82,19 @@ export const ADD_SELLER = gql`
       user {
         _id
       }
+    }
+  }
+`;
+
+export const ADD_REVIEW = gql`
+  mutation AddReview($user: [ID]!, $product: [ID]!) {
+    addReview(user: $user, product: $product) {
+      _id
+      product
+      rating
+      review
+      user
+      isRecommended
     }
   }
 `;

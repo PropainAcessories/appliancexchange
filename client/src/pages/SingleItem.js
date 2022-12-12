@@ -77,7 +77,7 @@ function SingleItem() {
   return (
     <>
       {currentProduct && cart ? (
-        <div className='container mt-1 mb-1'>
+        <div className='container my-1'>
           <NavLink to='/'>Back to Products</NavLink>
           <h2>{currentProduct.name}</h2>
           <p>{currentProduct.description}</p>

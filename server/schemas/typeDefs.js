@@ -42,6 +42,27 @@ const typeDefs = gql`
     phoneNumber: String
   }
 
+  type Billing {
+    _id: ID
+    user: ID
+    address: String
+    city: String
+    state: String
+    zipCode: String
+    isDefault: Boolean
+    updated: String
+    created: String
+  }
+
+  type Review {
+    _id: ID
+    product: ID
+    user: ID
+    rating: Int
+    review: String
+    isRecommended: Boolean
+  }
+
   type Checkout {
     session: ID
   }
@@ -53,6 +74,8 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
+    billing: [Billing]
+    review: [Review]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     user: User
@@ -66,6 +89,8 @@ const typeDefs = gql`
     addSeller(name: String!, email: String!, address: String!, phoneNumber: String!): Auth
     addProduct(category: [ID]!): Product
     addOrder(products: [ID]!): Order
+    addBilling(user: [ID]!): Billing
+    addReview(user: [ID]!, product: [ID]!): Review
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth

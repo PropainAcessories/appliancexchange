@@ -3,7 +3,7 @@ const Product = require('./Product');
 const Category = require('./Category');
 const Order = require('./Order');
 const Seller = require('./Seller');
-// const Review = require('./Review');
-// const Billing = require('./Billing');
+const Review = require('./Review');
+const Billing = require('./Billing');
 
-module.exports = { User, Product, Category, Order, Seller };
+module.exports = { User, Product, Category, Order, Seller, Review, Billing };

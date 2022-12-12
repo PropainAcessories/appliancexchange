@@ -17,6 +17,35 @@ export const QUERY_PRODUCTS = gql`
   }
 `;
 
+export const QUERY_REVIEW = gql`
+  query Review {
+    review {
+      _id
+      product
+      rating
+      review
+      isRecommended
+      user
+    }
+  }
+`;
+
+export const QUERY_BILLING = gql`
+  query Billing {
+    billing {
+      _id
+      user
+      address
+      city
+      zipCode
+      state
+      isDefault
+      created
+      updated
+    }
+  }
+`;
+
 export const QUERY_SELLER = gql `
   query{
     seller {

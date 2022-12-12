@@ -43,7 +43,7 @@ function Products() {
     }
 
     return (
-        <div className='mt-2 mb-2'>
+        <div className='my-2'>
             <h2>Products:</h2>
             {state.products.length ? (
                 <div className='flex-row'>
