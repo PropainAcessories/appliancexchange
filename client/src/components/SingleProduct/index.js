@@ -34,7 +34,7 @@ function SingleProduct(item) {
             });
             idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
         }
-    }
+    };
 
     return (
         <div className="card p-1">
