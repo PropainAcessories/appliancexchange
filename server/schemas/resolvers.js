@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Order, Product, Category } = require('../models');
+const { User, Order, Product, Category, Seller } = require('../models');
 const signToken = require('../utils/auth');
 const stripe = require('stripe')('pk_test_51MEEGRHzZuwtjjIt349YOKmuyJDtsPzI7qUzX2CrIbmkQ0bVYVngAkVqYiVyhGgvLwRZFKVeUazeGZkl6Cg00qMW00ckaTOMPN');
 
@@ -40,18 +40,20 @@ const resolvers = {
 
             throw new AuthenticationError('Please Log in or Create an Account.');
         },
-        // seller: async (parent, { _id }, context) => {
-        //     if (context.user) {
-        //         const seller = await Seller.findById(context.user._id).populate({
-        //             path: 'seller.users',
-        //             populate: 'product'
-        //         });
+        seller: async (parent, { _id }, context) => {
+            if (context.seller) {
+                const seller = await Seller.findById(context.seller._id).populate({
+                    path: 'orders.products',
+                    populate: 'category'
+                });
 
-        //         return user.seller.id(_id);
-        //     }
+                seller.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+                return seller;
+            }
             
-        //     throw new AuthenticationError('Log in please.');
-        // },
+            throw new AuthenticationError('Log in please.');
+        },
         order: async (parent, { _id }, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
@@ -64,12 +66,6 @@ const resolvers = {
 
             throw new AuthenticationError('Please Log in or Create an Account.');
         },
-        /*  
-        
-        TODO: Make this work for payments somehow
-        
-                READ THE FUCKING DOCUMENTATION THIS TIME YOU MORON; I KNOW YOU THINK YOU'RE SMART.
-        */
         checkout: async (parent, args, context) => {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ products: args.products });
@@ -80,9 +76,32 @@ const resolvers = {
             for (let i=0; i < products.length; i++) {
                 const product = await stripe.products.create({
                     name: products[i].name,
+                    description: products[i].description,
+                    images: [`${url}/images/${products[i].image}`]
 
-                })
+                });
+
+                const price = await stripe.prices.create({
+                    product: product.id,
+                    unit_amount: products[i].price * 100,
+                    currency: 'usd',
+                });
+
+                line_items.push({
+                    price: price.id,
+                    quantity: 1
+                });
             }
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`
+            });
+
+            return { session: session.id };
         }
     },
     Mutation: {
@@ -91,6 +110,12 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        addSeller: async (parent, args) => {
+            const seller = await Seller.create(args);
+            const token = signToken(seller);
+
+            return { token, seller };
         },
         addOrder: async (parent, { products }, context) => {
             if (context.user) {
@@ -110,7 +135,9 @@ const resolvers = {
 
         },
         updateProduct: async (parent, { _id, quantity }) => {
+            const decrement = Math.abs(quantity) * -1;
 
+            return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -129,9 +156,17 @@ const resolvers = {
 
             return { token, user };
         },
-        /* addProduct: async (parent, { product }, context) => {
-            
-         } */
+        addProduct: async (parent, { category }, context) => {
+            if (context.seller) {
+                const product = new Product({ category });
+
+                await Seller.findByIdAndUpdate(context.seller._id, { $push: { products: product } });
+
+                return product;
+            }
+
+            throw new AuthenticationError('Not Authorized.')
+        }
     }
 };
 

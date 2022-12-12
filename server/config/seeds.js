@@ -35,7 +35,7 @@ db.once('open', async () => {
             image: 'Laptop.jpg',
             category: categories[0]._id,
             price: 75.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -44,7 +44,7 @@ db.once('open', async () => {
             image: 'Desktop.jpg',
             category: categories[1]._id,
             price: 45.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -53,7 +53,7 @@ db.once('open', async () => {
             image: 'Iphone.jpg',
             category: categories[3]._id,
             price: 60.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -62,7 +62,7 @@ db.once('open', async () => {
             image: 'SmartTv.jpg',
             category: categories[4]._id,
             price: 100.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -71,7 +71,7 @@ db.once('open', async () => {
             image: 'monitor.jpg',
             category: categories[2]._id,
             price: 100.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -80,7 +80,7 @@ db.once('open', async () => {
             image: 'FunnyLamp.jpg',
             category: categories[5]._id,
             price: 15.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         },
         {
@@ -89,7 +89,7 @@ db.once('open', async () => {
             image: 'CuttingBoard.jpg',
             category: categories[6]._id,
             price: 5.00,
-            seller: sellers,
+            seller: sellers._id,
             quantity: 1
         }
     ]);
