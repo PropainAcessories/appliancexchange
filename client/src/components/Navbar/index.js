@@ -45,7 +45,7 @@ function NavBar () {
     <header className='flex-row px-1'>
         <h1>
             <NavLink to='/'>
-                Home
+                ApplianceXpress
             </NavLink>
         </h1>
 
