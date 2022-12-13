@@ -22,6 +22,9 @@ function Categories() {
                 type: UPDATE_CATEGORIES,
                 categories: categoryData.categories,
             });
+            categoryData.categories.forEach((category) => {
+                idbPromise('categories', 'put', category);
+            });
         } else if (!loading) {
             idbPromise('categories', 'get').then((categories) => {
                 dispatch({
@@ -38,7 +41,7 @@ function Categories() {
             currentCategory: id,
         });
     };
-
+    // Make this better Dropdownlist/Searchbar please.
     return (
         <div>
             <h2>Browse Categories</h2>
