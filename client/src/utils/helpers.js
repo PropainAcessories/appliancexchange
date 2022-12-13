@@ -17,7 +17,7 @@ export function idbPromise(storeName, method, object) {
         };
 
         request.onerror = function (e) {
-            console.log('Error');
+            console.log('Error', e);
         };
 
         request.onsuccess = function(e) {
@@ -36,7 +36,6 @@ export function idbPromise(storeName, method, object) {
                         break;
                     case 'get':
                         const all = store.getAll();
-
                         all.onsuccess = function() {
                             resolve(all.result);
                         };
