@@ -24,14 +24,9 @@ const userSchema = new Schema({
     phoneNumber: {
         type: String
     },
-    seller: {
-        type: Schema.Types.ObjectId,
-        ref: 'Seller',
-        default: null
-    },
     role: {
         type: String,
-        defualt: 'ROLE_MEMBER',
+        default: 'ROLE_MEMBER',
         enum: ['ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_SELLER']
     },
     billing: {

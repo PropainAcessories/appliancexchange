@@ -30,7 +30,6 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     phoneNumber: String
-    seller: [Seller]
     role: RoleType
     orders: [Order]
     billing: [Billing]
@@ -93,7 +92,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     addBilling(user: [ID]!): Billing!
 
-    addOrder(products: [ID]!): Order!
+    addOrder(products: [ID]!): Order
     addProduct(category: [ID]!): Product!
     
     deleteProduct(product: [ID]!): ID!
