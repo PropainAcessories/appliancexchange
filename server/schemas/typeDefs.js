@@ -76,7 +76,7 @@ const typeDefs = gql`
   type Query {
     categories: [Category]
     billing: [Billing]
-    review: [Review]
+    review(products: [ID]!): [Review]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     user: User
