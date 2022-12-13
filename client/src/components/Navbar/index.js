@@ -6,33 +6,37 @@ function NavBar () {
   function showNavigation() {
     if (Auth.loggedIn()) {
         return (
-            <ul className='flex-row'>
-                <li className='mx-1'>
-                    <NavLink to='/Orders'>
-                        Orders
-                    </NavLink>
-                </li>
-                <li className='mx-1'>
-                    <a href='/' onClick={() => Auth.logout()}>
-                        Log-Out
-                    </a>
-                </li>
-            </ul>
+            <div className='navContainer'>
+                <ul className='flex-row'>
+                    <li className='mx-1'>
+                        <NavLink to='/Orders'>
+                            Orders
+                        </NavLink>
+                    </li>
+                    <li className='mx-1'>
+                        <a href='/' onClick={() => Auth.logout()}>
+                            Log-Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
         );
     } else {
         return (
-            <ul className='flex-row'>
-                <li className='mx-1'>
-                    <NavLink to='/signup'>
-                        Sign-Up
-                    </NavLink>
-                </li>
-                <li className='mx-1'>
+            <div className='navContainer'>
+                 <ul className='flex-row'>
+                    <li className='mx-1'>
+                        <NavLink to='/signup'>
+                            Sign-Up
+                        </NavLink>
+                    </li>
+                    <li className='mx-1'>
                     <NavLink to='/login'>
                         Log-In
                     </NavLink>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         );
     }
   }
