@@ -14,6 +14,11 @@ function NavBar () {
                         </NavLink>
                     </li>
                     <li className='mx-1'>
+                    <NavLink to='/profile'>
+                        Profile
+                    </NavLink>
+                    </li>
+                    <li className='mx-1'>
                         <a href='/' onClick={() => Auth.logout()}>
                             Log-Out
                         </a>
