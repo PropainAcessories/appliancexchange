@@ -1,5 +1,5 @@
 const { gql } = require('apollo-server-express');
-// Add needed models once built; make queries and mutations for said models; ALSO SEED THE FUCKING DATABASE!!!!!!
+
 const typeDefs = gql`
   type Category {
     _id: ID

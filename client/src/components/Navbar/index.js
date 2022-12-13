@@ -13,7 +13,7 @@ function NavBar () {
                     </NavLink>
                 </li>
                 <li className='mx-1'>
-                    <a href='/' onClick={() => Auth.logout}>
+                    <a href='/' onClick={() => Auth.logout()}>
                         Log-Out
                     </a>
                 </li>
