@@ -30,7 +30,7 @@ export const ADD_ORDER = gql`
 `;
 
 export const ADD_BILLING = gql`
-  mutation Mutation($user: [ID]!) {
+  mutation addBilling($user: [ID]!) {
     addBilling(user: $user) {
       _id
       address
@@ -46,7 +46,7 @@ export const ADD_BILLING = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation AddUser(
+  mutation addUser(
     $firstName: String!
     $lastName: String!
     $email: String!
@@ -67,7 +67,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_SELLER = gql`
-  mutation AddSeller(
+  mutation addSeller(
     $name: String!
     $email: String!
     $address: String!
@@ -88,7 +88,7 @@ export const ADD_SELLER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation AddReview($user: [ID]!, $product: [ID]!) {
+  mutation addReview($user: [ID]!, $product: [ID]!) {
     addReview(user: $user, product: $product) {
       _id
       product
@@ -101,7 +101,7 @@ export const ADD_REVIEW = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation AddProduct($category: [ID]!) {
+  mutation addProduct($category: [ID]!) {
     addProduct(category: $category) {
       name
       description

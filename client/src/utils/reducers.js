@@ -8,20 +8,11 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
-    ADD_REVIEW,
     TOGGLE_CART
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
-        case ADD_REVIEW: {
-            const newReview = { ...action.payload };
-
-            return {
-                ...state,
-                review: [...state, newReview]
-            }
-        }
         case UPDATE_PRODUCTS:
             return {
                 ...state,
