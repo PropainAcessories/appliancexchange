@@ -2,32 +2,32 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Category {
-    _id: ID
-    name: String
+    _id: ID!
+    name: String!
   }
 
   type Product {
-    _id: ID
-    name: String
-    description: String
-    seller: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+    _id: ID!
+    name: String!
+    description: String!
+    seller: String!
+    image: String!
+    quantity: Int!
+    price: Float!
+    category: Category!
   }
 
   type Order {
     _id: ID
-    purchaseDate: String
-    products: [Product]
+    purchaseDate: String!
+    products: [Product]!
   }
 
   type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
     phoneNumber: String
     seller: ID
     role: String
@@ -36,40 +36,40 @@ const typeDefs = gql`
   }
 
   type Seller {
-    _id: ID
-    name: String
-    email: String
-    address: String
-    phoneNumber: String
+    _id: ID!
+    name: String!
+    email: String!
+    address: String!
+    phoneNumber: String!
   }
 
   type Billing {
-    _id: ID
-    user: ID
-    address: String
-    city: String
-    state: String
-    zipCode: String
+    _id: ID!
+    user: [User]!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
     isDefault: Boolean
     updated: String
     created: String
   }
 
   type Review {
-    _id: ID
-    product: ID
-    user: ID
-    rating: Int
-    review: String
-    isRecommended: Boolean
+    _id: ID!
+    product: [Product]!
+    user: ID!
+    rating: Int!
+    review: String!
+    isRecommended: Boolean!
   }
 
   type Checkout {
-    session: ID
+    session: ID!
   }
 
   type Auth {
-    token: ID
+    token: ID!
     user: User
   }
 

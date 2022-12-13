@@ -8,11 +8,35 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
+    ADD_CATEGORY,
+    ADD_PRODUCT,
+    LOGIN,
+    LOGOUT,
     TOGGLE_CART
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
+        case LOGIN:
+            return {
+                ...state,
+                user: [...action.payload]
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                user: [...null]
+            }
+        case ADD_PRODUCT:
+            return {
+                ...state,
+                products: [...action.categories],
+            };
+        case ADD_CATEGORY:
+            return {
+                ...state,
+                categories: [...action.categories],
+            };
         case UPDATE_PRODUCTS:
             return {
                 ...state,

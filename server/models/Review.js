@@ -14,14 +14,17 @@ const reviewSchema = new Schema({
     },
     rating: {
         type: Number,
+        required: true,
         default: 0
     },
     review: {
         type: String,
+        required: true,
         trim: true
     },
     isRecommended: {
         type: Boolean,
+        required: true,
         default: false
     }
 });

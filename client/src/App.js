@@ -49,7 +49,7 @@ function App() {
             <NavBar />
             <Routes>
               <Route
-              exact path='/'
+              path='/'
               element={<Home/>}
               />
               <Route
