@@ -30,17 +30,27 @@ export const ADD_ORDER = gql`
 `;
 
 export const ADD_BILLING = gql`
-  mutation addBilling($user: [ID]!) {
-    addBilling(user: $user) {
-      _id
-      address
-      city
-      state
-      zipCode
-      created
-      updated
-      user
-      isDefault
+  mutation addBilling(
+    $user: [ID]!
+    $address: String!
+    $city: String!
+    $state: String!
+    $zipCode: String!
+    $isDefault: Boolean!
+    ) {
+    addBilling(
+      user: $user
+      address: $address
+      city: $city
+      state: $state
+      zipCode: $zipCode
+      isDefault: $isDefault
+      ) {
+        token {
+          user {
+            _id
+          }
+        }
     }
   }
 `;
@@ -88,29 +98,46 @@ export const ADD_SELLER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($user: [ID]!, $product: [ID]!) {
-    addReview(user: $user, product: $product) {
-      _id
-      product
-      rating
-      review
-      user
-      isRecommended
-    }
+  mutation addReview(
+    $user: [ID]!
+    $product: [ID]!
+    $rating: Int!
+    $review: String!
+    $isRecommended: Boolean!
+    ) {
+    addReview(
+      user: $user
+      product: $product
+      rating: $rating
+      review: $review
+      isRecommended: $isRecommended
+    )
   }
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation addProduct($category: [ID]!) {
-    addProduct(category: $category) {
-      name
-      description
-      seller
-      image
-      quantity
-      price
-      category {
-        _id
+  mutation addProduct(
+    $name: String!
+    $description: String!
+    $seller: [ID]!
+    $image: String!
+    $quantity: Int
+    $price: Int!
+    $category: [Category]!
+  ) {
+    addProduct(
+      name: $name
+      description: $description
+      seller: $seller
+      image: $image
+      quantity: $quantity
+      price: $price
+      category: $category
+    ) {
+        token
+        user {
+          _id
+        }
       }
     }
   }
