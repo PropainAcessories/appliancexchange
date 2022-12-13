@@ -33,7 +33,7 @@ function Login(props) {
 
     return (
         <div className='container'>
-            <NavLink to='/signup'>Sign Up</NavLink>
+            <NavLink to='/signup'>Don't Have an Account? Sign Up Here!</NavLink>
 
             <h2>Log-In</h2>
             <form onSubmit={handleFormSubmit}>
