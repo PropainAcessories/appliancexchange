@@ -235,5 +235,7 @@ button[disabled] {
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;
+    margin-right: var(--spacing-one);
+    margin-left: var(--spacing-one);
   }
 }
