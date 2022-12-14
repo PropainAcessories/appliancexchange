@@ -140,5 +140,10 @@ export const ADD_PRODUCT = gql`
         }
       }
     }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct($ID: ID) {
+    deleteProduct(ID: $ID)
   }
 `;

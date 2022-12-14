@@ -7,7 +7,7 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-
+import './style.css';
 const stripePromise = loadStripe('pk_test_51MEEGRHzZuwtjjIt349YOKmuyJDtsPzI7qUzX2CrIbmkQ0bVYVngAkVqYiVyhGgvLwRZFKVeUazeGZkl6Cg00qMW00ckaTOMPN');
 
 const Cart = () => {
@@ -63,14 +63,14 @@ const Cart = () => {
         return (
             <div className='cart-closed' onClick={toggleCart}>
                 <span role='img' aria-label='trash'>
-                    🛒
+                    🛒 <h3>Click To Show Cart.</h3>
                 </span>
             </div>
         );
     }
 
     return (
-        <div className='cart'>
+        <div className='cart text-white'>
             <div className='close' onClick={toggleCart}>
                 [Close]
             </div>
@@ -94,7 +94,7 @@ const Cart = () => {
             ) : (
                 <h2>
                     <span role='img' aria-label='shocked'></span>
-                    Cart Empty
+                    <h3>Cart Empty</h3>
                 </h2>
             )}
         </div>

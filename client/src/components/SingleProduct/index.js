@@ -37,7 +37,7 @@ function SingleProduct(item) {
     };
 
     return (
-        <div className="card px-1 py-1">
+        <div className="card px-1 py-1 bg-info">
             <NavLink to={`/products/${_id}`}>
                 <img
                 alt={name}
@@ -46,11 +46,11 @@ function SingleProduct(item) {
                 <p>{name}</p>
             </NavLink>
             <div>
-                <div>{quantity} {plurals('item', quantity)} In Stock</div>
-                <span>${price}</span>
+                <div className="text-white">{quantity} {plurals('item', quantity)} In Stock</div>
+                <span className="text-white">${price}</span>
                 <p>{seller}</p>
             </div>
-            <button onClick={addToCart}>Add to Cart</button>
+            <button className="text-white" onClick={addToCart}>Add to Cart</button>
         </div>
     );
 };

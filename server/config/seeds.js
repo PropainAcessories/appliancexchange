@@ -103,7 +103,6 @@ db.once('open', async () => {
         lastName: 'Howe',
         email: 'hhc3h8@gmail.com',
         phoneNumber: '256-555-5555',
-        seller: null,
         role: 'ROLE_ADMIN',
         password: 'password'
     });
@@ -112,7 +111,6 @@ db.once('open', async () => {
         lastName: 'Every',
         email: 'Pirate@ship.com',
         phoneNumber: '256-555-5555',
-        seller: sellers,
         role: 'ROLE_SELLER',
         password: 'password'
     });
@@ -122,7 +120,6 @@ db.once('open', async () => {
         lastName: 'Levasseur',
         email: 'findit@gold.com',
         phoneNumber: '256-555-5555',
-        seller: null,
         role: 'ROLE_MEMBER',
         password: 'password',
         orders: [

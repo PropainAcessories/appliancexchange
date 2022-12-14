@@ -51,6 +51,7 @@ function Categories() {
                 onClick={() => {
                     handleClick(item._id);
                 }}
+                className='text-white'
                 >{item.name}</button>
             ))}
         </div>

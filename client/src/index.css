@@ -2,11 +2,16 @@
   --primary: #32343f;
   --secondary: #c60af5;
   --tertiary: #d36a41;
+  --card: #150e24;
   --light: #ffffff;
   --dark: #272f35;
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
   --spacint-two: calc(1rem);
+}
+
+#root {
+  background-color: var(--dark);
 }
 
 * {
@@ -16,6 +21,7 @@
 html,
 body {
   min-height: 100%;
+  background-color: var(--dark);
 }
 
 body {
@@ -25,7 +31,10 @@ body {
   font-weight: 500;
   line-height: 1.5;
   font-size: 16px;
-  color: var(--dark);
+}
+
+a {
+  text-decoration: none;
 }
 
 h1,
@@ -38,6 +47,7 @@ h6 {
   font-weight: 600;
   margin: 5px 0;
   line-height: 1.25;
+  color: var(--light);
 }
 
 h1 {
@@ -67,6 +77,7 @@ h6 {
 p {
   font-size: 1.1rem;
   margin-top: 0;
+  color: var(--light);
 }
 
 a {
@@ -77,6 +88,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  opacity: .5;
 }
 
 span[role="img"] {
@@ -115,6 +127,7 @@ img {
 }
 
 .container {
+  background-color: var(--dark);
   width: 85%;
   max-width: 1200px;
   margin-left: auto;

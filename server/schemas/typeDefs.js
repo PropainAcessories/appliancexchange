@@ -1,11 +1,15 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  enum RoleType {
+    ROLE_MEMBER
+    ROLE_ADMIN
+    ROLE_SELLER
+  }
   type Category {
     _id: ID!
     name: String!
   }
-
   type Product {
     _id: ID!
     name: String!
@@ -17,13 +21,11 @@ const typeDefs = gql`
     category: Category!
     review: [Review]
   }
-
   type Order {
     _id: ID
     purchaseDate: String!
     products: [Product]!
   }
-
   type User {
     _id: ID!
     firstName: String!
@@ -32,9 +34,8 @@ const typeDefs = gql`
     phoneNumber: String
     role: RoleType
     orders: [Order]
-    billing: [Billing]
+    billing: Billing
   }
-
   type Seller {
     _id: ID!
     name: String!
@@ -42,10 +43,9 @@ const typeDefs = gql`
     address: String!
     phoneNumber: String!
   }
-
   type Billing {
     _id: ID!
-    user: [User]!
+    user: User!
     address: String!
     city: String!
     state: String!
@@ -54,25 +54,21 @@ const typeDefs = gql`
     updated: String
     created: String
   }
-
   type Review {
     _id: ID!
-    product: [Product]!
+    product: Product!
     user: ID!
     rating: Int!
     review: String!
     isRecommended: Boolean!
   }
-
   type Checkout {
     session: ID!
   }
-
   type Auth {
     token: ID!
     user: User
   }
-
   type Query {
     categories: [Category]
     billing: [Billing]
@@ -84,14 +80,12 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }
-
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addSeller(name: String!, email: String!, address: String!, phoneNumber: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     addBilling(user: [ID]!): Billing!
-
     addOrder(products: [ID]!): Order
     addProduct(category: [ID]!): Product!
     
@@ -101,5 +95,4 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
   }
 `;
-
 module.exports = typeDefs;

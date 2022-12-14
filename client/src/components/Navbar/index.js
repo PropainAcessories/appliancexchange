@@ -14,9 +14,9 @@ function NavBar () {
                         </NavLink>
                     </li>
                     <li className='mx-1'>
-                    <NavLink to='/profile'>
-                        Profile
-                    </NavLink>
+                        <NavLink to='/profile'>
+                            Profile
+                        </NavLink>
                     </li>
                     <li className='mx-1'>
                         <a href='/' onClick={() => Auth.logout()}>
@@ -36,9 +36,14 @@ function NavBar () {
                         </NavLink>
                     </li>
                     <li className='mx-1'>
-                    <NavLink to='/login'>
-                        Log-In
-                    </NavLink>
+                        <NavLink to='/cart'>
+                            View-Cart
+                        </NavLink>
+                    </li>
+                    <li className='mx-1'>
+                        <NavLink to='/login'>
+                            Log-In
+                        </NavLink>
                     </li>
                 </ul>
             </div>
@@ -48,7 +53,7 @@ function NavBar () {
 
   return (
     <header className='flex-row px-1'>
-        <h1>
+        <h1 className='navTitle'>
             <NavLink to='/'>
                 ApplianceXpress
             </NavLink>

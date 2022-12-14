@@ -27,7 +27,6 @@ const userSchema = new Schema({
     role: {
         type: String,
         default: 'ROLE_MEMBER',
-        enum: ['ROLE_ADMIN', 'ROLE_MEMBER', 'ROLE_SELLER']
     },
     billing: {
         type: Schema.Types.ObjectId,
