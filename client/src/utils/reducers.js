@@ -8,29 +8,44 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
-    ADD_CATEGORY,
-    ADD_PRODUCT,
-    TOGGLE_CART
+    UPDATE_REVIEWS,
+    TOGGLE_REVIEWS,
+    TOGGLE_CART,
+    DELETE_PRODUCT,
+    ADD_PRODUCT
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
         case ADD_PRODUCT:
+            const newProduct = { ...action.payload };
             return {
                 ...state,
-                products: [...action.categories],
+                products: [...state.products, newProduct],
             };
-        case ADD_CATEGORY:
+        case DELETE_PRODUCT:
             return {
                 ...state,
-                categories: [...action.categories],
+                products: [...state.products].filter(
+                    (product) => product._id !== action.payload
+                ),
+            };
+        case TOGGLE_REVIEWS:
+            return {
+                ...state,
+                reviewsOpen: !state.reviewsOpen
+            };
+        case UPDATE_REVIEWS:
+            return {
+                ...state,
+                reviewsOpen: true,
+                reviews: [...state.reviews, action.payload]
             };
         case UPDATE_PRODUCTS:
             return {
                 ...state,
                 products: [...action.products],
             };
-
         case ADD_TO_CART:
             return {
                 ...state,

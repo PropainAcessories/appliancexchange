@@ -84,8 +84,9 @@ function SingleItem() {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
+            <button className='ctgBtn mx-2 text-white' onClick={addToCart}>Add to Cart</button>
             <button
+            className='ctgBtn mx-2 text-white'
             disabled={!cart.find((p) => p._id === currentProduct._id)}
             onClick={removeFromCart}
             >

@@ -40,7 +40,7 @@ const resolvers = {
 
             throw new AuthenticationError('Please Log in or Create an Account.');
         },
-        seller: async (parent, { _id }, context) => {
+        seller: async (parent, args, context) => {
             if (context.seller) {
                 const seller = await Seller.findById(context.seller._id).populate({
                     path: 'orders.products',
@@ -169,17 +169,30 @@ const resolvers = {
                     description,
                     seller,
                     image,
-                    price
+                    price,
+                    quantity
                 } = args
     
-                const product = new Product({ category, name, description, seller, image, price }, context);
+                const product = new Product({ category, name, description, seller, image, price, quantity }, context);
     
                 await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
 
                 return product
             }
         },
-    }
+        deleteProduct: async (parent, { productId }) => {
+            return Product.findOneAndDelete({ _id: productId });
+        },
+        deleteOrder: async (parent, { orderId, productId }, context) => {
+            if (context.user) {
+                return Order.findByIdAndUpdate(
+                    { _id: orderId },
+                    { $pull: { products: { _id: productId } } },
+                    { new: true }
+                );
+            };
+        },
+    },
 };
 
 module.exports = resolvers;

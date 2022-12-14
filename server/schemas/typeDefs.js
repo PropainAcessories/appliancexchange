@@ -76,7 +76,7 @@ const typeDefs = gql`
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     user: User
-    seller: Seller
+    seller(_id: ID!): Seller
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }
@@ -89,7 +89,8 @@ const typeDefs = gql`
     addCategory(name: String!): Category
     addBilling(user: ID!): Billing!
     addOrder(products: [ID]!): Order
-    addProduct(category: ID!, name: String!, description: String!, seller: String!, image: String!, price: Int!): Product!
+    deleteOrder(products: [ID]!): Order
+    addProduct(category: ID!, name: String!, description: String!, seller: String!, image: String!, price: Int!, quantity: Int!): Product!
     
     deleteProduct(product: [ID]!): ID!
     
@@ -97,4 +98,5 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
   }
 `;
+
 module.exports = typeDefs;

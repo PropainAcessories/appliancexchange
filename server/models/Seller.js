@@ -16,6 +16,13 @@ const sellerSchema = new Schema({
         type: String,
         required: true
     },
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+            default: null
+        }
+    ],
     phoneNumber: {
         type: String,
         required: true

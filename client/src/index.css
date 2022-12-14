@@ -125,7 +125,8 @@ a {
 
 a:hover {
   text-decoration: underline;
-  opacity: .5;
+  opacity: .4;
+  color: var(--secondary);
 }
 
 span[role="img"] {
@@ -159,8 +160,8 @@ ul {
 }
 
 img {
-  min-width: 20%;
-  max-width: 40%;
+  min-width: 40%;
+  max-width: 80%;
 }
 
 .card {
@@ -198,6 +199,8 @@ img {
   margin-right: var(--spacing-one);
   margin-left: var(--spacing-one);
 }
+
+
 
 .navContainer li {
   justify-content: space-between;
@@ -283,7 +286,7 @@ button[disabled] {
 
 @media screen and (max-width: 768px) {
   .card {
-    width: 100%;
+    width: 45%;
     margin-right: var(--spacing-one);
     margin-left: var(--spacing-one);
   }

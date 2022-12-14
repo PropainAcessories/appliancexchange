@@ -50,7 +50,7 @@ function SingleProduct(item) {
                 <span className="text-white">${price}</span>
                 <p>{seller}</p>
             </div>
-            <button className="text-white" onClick={addToCart}>Add to Cart</button>
+            <button className="ctgBtn text-white" onClick={addToCart}>Add to Cart</button>
         </div>
     );
 };
