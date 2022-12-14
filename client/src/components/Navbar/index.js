@@ -10,6 +10,16 @@ function NavBar () {
             <div className='navContainer'>
                 <ul className='flex-row'>
                     <li className='mx-1'>
+                        <NavLink to='/cart'>
+                            View-Cart
+                        </NavLink>
+                    </li>
+                    <li className='mx-1'>
+                        <NavLink to='/sell'>
+                            Sell-Items
+                        </NavLink>
+                    </li>
+                    <li className='mx-1'>
                         <NavLink to='/Orders'>
                             Orders
                         </NavLink>

@@ -14,11 +14,11 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
-    seller: String!
+    seller: String
     image: String!
     quantity: Int!
     price: Float!
-    category: Category!
+    category: Category
     review: [Review]
   }
   type Order {
@@ -90,7 +90,7 @@ const typeDefs = gql`
     addBilling(user: ID!): Billing!
     addOrder(products: [ID]!): Order
     deleteOrder(products: [ID]!): Order
-    addProduct(category: ID!, name: String!, description: String!, seller: String!, image: String!, price: Int!, quantity: Int!): Product!
+    addProduct(category: ID!, name: String!, description: String!, seller: String, image: String!, price: Int!, quantity: Int!): Product!
     deleteProduct(product: [ID]!): ID! 
     addReview(user: [ID]!, product: [ID]!): Review!   
     updateProduct(_id: ID!, quantity: Int!): Product

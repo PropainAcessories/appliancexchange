@@ -11,7 +11,7 @@ export const UPDATE_CURRENT_CATEGORY = "UPDATE_CURRENT_CATEGORY";
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_REVIEWS = 'UPDATE_REVIEWS';
-export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const POST_PRODUCT = 'POST_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 // EXPORT MOAR!

@@ -11,6 +11,7 @@ import SingleItem from './pages/SingleItem';
 import Nothing from './pages/Nothing';
 import Profile from './pages/Profile';
 import CartPage from './pages/CartPage';
+import SellItem from './pages/SellItem'
 // TODO Import something from GlobalState after you make it.
 import { StoreProvider } from './utils/GlobalState';
 
@@ -66,7 +67,7 @@ function App() {
               element={<Success/>}
               />
               <Route
-              path='/Orders'
+              path='/orders'
               element={<OrderPage/>}
               />
               <Route
@@ -82,8 +83,12 @@ function App() {
               element={<Profile/>}
               />
               <Route
-              path='Cart'
+              path='/cart'
               element={<CartPage/>}
+              />
+              <Route
+              path='/sell'
+              element={<SellItem/>}
               />
             </Routes>
           </StoreProvider>

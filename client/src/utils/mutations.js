@@ -135,13 +135,8 @@ export const ADD_PRODUCT = gql`
       quantity: $quantity
       price: $price
       category: $category
-    ) {
-        token
-        user {
-          _id
-        }
-      }
-    }
+    )
+  }
 `;
 
 export const DELETE_PRODUCT = gql`

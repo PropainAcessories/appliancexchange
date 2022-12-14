@@ -12,12 +12,12 @@ import {
     TOGGLE_REVIEWS,
     TOGGLE_CART,
     DELETE_PRODUCT,
-    ADD_PRODUCT
+    POST_PRODUCT
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
     switch (action.type) {
-        case ADD_PRODUCT:
+        case POST_PRODUCT:
             const newProduct = { ...action.payload };
             return {
                 ...state,

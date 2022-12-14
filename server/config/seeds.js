@@ -8,7 +8,7 @@ db.once('open', async () => {
     await Seller.deleteMany();
     const sellers = await Seller.create({
         name: 'HenryEvery LLC',
-        email: 'hhc3h8@gmail.com',
+        email: 'hhh8@gmail.com',
         address: 'LOLNO',
         products: [],
         phoneNumber: '256-555-5555'
