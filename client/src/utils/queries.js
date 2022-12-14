@@ -67,16 +67,18 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-  query {
-    products {
-      _id
-      name
-      description
-      seller
-      price
-      quantity
-      category {
+  {
+    query {
+      products {
+        _id
         name
+        description
+        seller
+        price
+        quantity
+        category {
+          name
+        }
       }
     }
   }
