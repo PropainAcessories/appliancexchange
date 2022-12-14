@@ -41,6 +41,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     address: String!
+    products: [Product]
     phoneNumber: String!
   }
   type Billing {
@@ -83,7 +84,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addSeller(name: String!, email: String!, address: String!, phoneNumber: String!): Auth
+    addSeller(name: String!, email: String!, address: String!, products: [Product], phoneNumber: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
 
     addCategory(name: String!): Category
