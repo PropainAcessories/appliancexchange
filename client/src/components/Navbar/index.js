@@ -1,6 +1,7 @@
 import React from 'react';
 import Auth from '../../utils/auth';
 import { NavLink } from 'react-router-dom';
+import './style.css';
 
 function NavBar () {
   function showNavigation() {
@@ -19,7 +20,8 @@ function NavBar () {
                         </NavLink>
                     </li>
                     <li className='mx-1'>
-                        <a href='/' onClick={() => Auth.logout()}>
+                        <a className='text-white'
+                         href='/' onClick={() => Auth.logout()}>
                             Log-Out
                         </a>
                     </li>
@@ -52,17 +54,17 @@ function NavBar () {
   }
 
   return (
-    <header className='flex-row px-1'>
-        <h1 className='navTitle'>
+    <div className='flex-row px-1'>
+        <h2 className='navTitle'>
             <NavLink to='/'>
                 ApplianceXpress
             </NavLink>
-        </h1>
+        </h2>
 
-        <nav>
+        <div className='px-2'>
             {showNavigation()}
-        </nav>
-    </header>
+        </div>
+    </div>
   );
 };
 

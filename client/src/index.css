@@ -18,6 +18,29 @@
   box-sizing: border-box;
 }
 
+form {
+  background-color: #3d06b4;
+  min-width: 45%;
+  max-width: none;
+  min-height: auto;
+  border-radius: 0.5rem;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+label {
+  color: var(--light);
+  font-size: 1.25rem;
+  text-decoration: underline;
+  padding-left: 1rem;
+}
+
+.ctgBtn {
+  border-radius: 0.25rem;
+}
+
 html,
 body {
   min-height: 100%;
@@ -80,6 +103,20 @@ p {
   color: var(--light);
 }
 
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #ffffff;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+  margin-bottom: 0.25rem;
+  margin-right: 2.5rem;
+  margin-left: 2.5rem;
+  padding-top: 1rem;
+}
+
 a {
   color: var(--tertiary);
   text-decoration: none;
@@ -96,7 +133,9 @@ span[role="img"] {
 }
 
 form {
-  width: 40%;
+  min-width: 65%;
+  max-width: none;
+  border-radius: 0.25rem;
 }
 
 input {
@@ -104,7 +143,10 @@ input {
   padding: 1rem;
   border: 1px solid var(--dark);
   outline: none;
+  min-width: 60%;
   border-radius: 3px;
+  margin-right: var(--spacing-two);
+  margin-left: var(--spacing-two);
 }
 
 input:focus {
@@ -123,7 +165,12 @@ img {
 
 .card {
   width: 25%;
+  min-width: 0;
+  font-weight: 400;
   text-align: center;
+  position: relative;
+  display: flex;
+  border-radius: 0.5rem;
 }
 
 .container {
@@ -150,6 +197,10 @@ img {
 .mx-1 {
   margin-right: var(--spacing-one);
   margin-left: var(--spacing-one);
+}
+
+.navContainer li {
+  justify-content: space-between;
 }
 
 .mx-2 {
@@ -185,11 +236,9 @@ img {
 
 header {
   background: var(--primary);
-  min-width: 100%;
-  max-width: 100%;
 }
 
-header a {
+div a {
   color: var(--light);
 }
 
@@ -237,5 +286,8 @@ button[disabled] {
     width: 100%;
     margin-right: var(--spacing-one);
     margin-left: var(--spacing-one);
+  }
+  .modal-footer {
+    margin-left: 1rem;
   }
 }

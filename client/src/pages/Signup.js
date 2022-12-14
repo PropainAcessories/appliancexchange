@@ -32,11 +32,11 @@ function Signup(props) {
 
     return (
         <div className='container'>
-            <NavLink to='/login'>Have an Account? Log in</NavLink>
+            <NavLink className='text-white' to='/login'>Have an Account? Log in</NavLink>
 
             <h2> Sign Up</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div className='flex-row space-between'>
+            <form onSubmit={handleFormSubmit} className='py-2 px-2'>
+                <div className='flex-row space-between py-2'>
                     <label htmlFor='firstName'>First Name:</label>
                     <input
                     placeholder='firstName'
@@ -46,7 +46,7 @@ function Signup(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <div className='flex-row space-between'>
+                <div className='flex-row space-between py-2'>
                     <label htmlFor='lastName'>Last Name:</label>
                     <input
                     placeholder='lastName'
@@ -56,7 +56,7 @@ function Signup(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <div className='flex-row space-between'>
+                <div className='flex-row space-between py-2'>
                     <label htmlFor='Name'>Email:</label>
                     <input
                     placeholder='email'
@@ -66,7 +66,7 @@ function Signup(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <div className='flex-row space-between'>
+                <div className='flex-row space-between py-2'>
                     <label htmlFor='Name'>Password:</label>
                     <input
                     placeholder='**********'
@@ -76,9 +76,10 @@ function Signup(props) {
                     onChange={handleChange}
                 />
                 </div>
-                <div className='flex-row flex-end'>
-                    <button type='submit'>Sign-Up</button>
+                <div className='flex-row flex-end py-1'>
+                    <button className='text-white' type='submit'>Sign-Up</button>
                 </div>
+                <div className='modal-footer' />
             </form>
         </div>
     )

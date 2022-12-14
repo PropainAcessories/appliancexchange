@@ -1,0 +1,8 @@
+* {
+    text-decoration: none;
+}
+.navbar__link--active {
+    background-color: #17ee0f;
+    color: black;
+    list-style: none;
+}

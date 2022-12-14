@@ -33,11 +33,11 @@ function Login(props) {
 
     return (
         <div className='container'>
-            <NavLink to='/signup'>Don't Have an Account? Sign Up Here!</NavLink>
+            <NavLink className='text-white' to='/signup'>Don't Have an Account? Sign Up Here!</NavLink>
 
             <h2>Log-In</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div className='flex-row space-between'>
+            <form onSubmit={handleFormSubmit} className='px-2 py-2'>
+                <div className='flex-row space-between py-2 py-3'>
                     <label htmlFor='email'>Email Address:</label>
                     <input
                     placeholder='email@test.net'
@@ -47,7 +47,7 @@ function Login(props) {
                     onChange={handleChange}
                     />
                 </div>
-                <div className='flex-row space-between'>
+                <div className='flex-row space-between py-2 py-3'>
                     <label htmlFor='pwd'>Password:</label>
                     <input
                     placeholder='*************'
@@ -63,8 +63,9 @@ function Login(props) {
                     </div>
                 ): null}
                 <div className='flex-row flex-end'>
-                    <button type='submit'>Submit</button>
+                    <button className='text-white' type='submit'>Submit</button>
                 </div>
+                <div className='modal-footer' />
             </form>
         </div>
     );

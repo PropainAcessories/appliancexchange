@@ -31,7 +31,7 @@ export const ADD_ORDER = gql`
 
 export const ADD_BILLING = gql`
   mutation addBilling(
-    $user: [ID]!
+    $user: ID!
     $address: String!
     $city: String!
     $state: String!
@@ -119,11 +119,11 @@ export const ADD_PRODUCT = gql`
   mutation addProduct(
     $name: String!
     $description: String!
-    $seller: [ID]!
+    $seller: ID!
     $image: String!
     $quantity: Int
     $price: Int!
-    $category: [Category]!
+    $category: Category!
   ) {
     addProduct(
       name: $name

@@ -71,7 +71,7 @@ const typeDefs = gql`
   }
   type Query {
     categories: [Category]
-    billing: [Billing]
+    billing: Billing
     review(products: [ID]!): [Review]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
@@ -85,9 +85,11 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addSeller(name: String!, email: String!, address: String!, phoneNumber: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    addBilling(user: [ID]!): Billing!
+
+    addCategory(name: String!): Category
+    addBilling(user: ID!): Billing!
     addOrder(products: [ID]!): Order
-    addProduct(category: [ID]!): Product!
+    addProduct(category: ID!, name: String!, description: String!, seller: String!, image: String!, price: Int!): Product!
     
     deleteProduct(product: [ID]!): ID!
     

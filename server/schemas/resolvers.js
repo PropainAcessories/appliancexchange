@@ -47,7 +47,7 @@ const resolvers = {
                     populate: 'category'
                 });
 
-                seller.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+                seller.orders.sort((a,b) => b.purchaseDate - a.purchaseDate);
 
                 return seller;
             }
@@ -105,6 +105,11 @@ const resolvers = {
         }
     },
     Mutation: {
+        addCategory: async (parent, args) => {
+            const category = await Category.create(args);
+
+            return category;
+        },
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
@@ -132,7 +137,7 @@ const resolvers = {
             if (context.user) {
                 return await User.findByIdAndUpdate(context.user._id, args, { new: true });
             }
-
+            throw new AuthenticationError('Please Log In to edit your account.')
         },
         updateProduct: async (parent, { _id, quantity }) => {
             const decrement = Math.abs(quantity) * -1;
@@ -156,17 +161,24 @@ const resolvers = {
 
             return { token, user };
         },
-        addProduct: async (parent, { category }, context) => {
-            if (context.seller) {
-                const product = new Product({ category });
+        addProduct: async (parent, args, context) => {
+            if (context.user) {
+                const {
+                    category,
+                    name,
+                    description,
+                    seller,
+                    image,
+                    price
+                } = args
+    
+                const product = new Product({ category, name, description, seller, image, price }, context);
+    
+                await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
 
-                await Seller.findByIdAndUpdate(context.seller._id, { $push: { products: product } });
-
-                return product;
+                return product
             }
-
-            throw new AuthenticationError('Not Authorized.')
-        }
+        },
     }
 };
 
