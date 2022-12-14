@@ -7,7 +7,7 @@ module.exports = {
         let token = req.body || req.query.token || req.headers.authorization;
 
         if (req.headers.authorization) {
-            token = token.split(' ').pop().trim();
+            token = token.toString().split(' ').pop().trim();
         }
 
         if (!token) {

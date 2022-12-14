@@ -1,25 +1,32 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
-      _id
+query Products($category: ID) {
+  products(category: $category) {
+    _id
+    name
+    description
+    seller
+    image
+    quantity
+    price
+    category {
       name
-      description
-      seller
-      price
-      quantity
-      image
-      category {
-        _id
-      }
+    }
+    review {
+      _id
+      rating
+      review
+      isRecommended
+      user
     }
   }
+}
 `;
 
 export const QUERY_REVIEW = gql`
-  query Review {
-    review {
+  query Review($product: ID) {
+    review(product: $product) {
       _id
       product
       rating
@@ -31,8 +38,8 @@ export const QUERY_REVIEW = gql`
 `;
 
 export const QUERY_BILLING = gql`
-  query Billing {
-    billing {
+  query Billing($user: ID) {
+    billing(user: $user) {
       _id
       user
       address
@@ -47,7 +54,7 @@ export const QUERY_BILLING = gql`
 `;
 
 export const QUERY_SELLER = gql `
-  query{
+  query Seller {
     seller {
       _id
       address
@@ -67,25 +74,23 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-  {
-    query {
-      products {
-        _id
+  query Products{
+    products {
+      _id
+      name
+      description
+      seller
+      price
+      quantity
+      category {
         name
-        description
-        seller
-        price
-        quantity
-        category {
-          name
-        }
       }
     }
   }
 `;
 
 export const QUERY_CATEGORIES = gql`
-  query {
+  query Categories {
     categories {
       _id
       name
@@ -94,7 +99,7 @@ export const QUERY_CATEGORIES = gql`
 `;
 
 export const QUERY_USER = gql`
-  query {
+  query User {
     user {
       firstName
       lastName
