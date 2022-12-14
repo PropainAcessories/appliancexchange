@@ -142,7 +142,9 @@ const resolvers = {
         updateProduct: async (parent, { _id, quantity }) => {
             const decrement = Math.abs(quantity) * -1;
 
-            return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+            return await Product.findByIdAndUpdate(_id, 
+                { $inc: { quantity: decrement } },
+                { new: true });
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -162,26 +164,46 @@ const resolvers = {
             return { token, user };
         },
         addProduct: async (parent, args, context) => {
-            if (context.user) {
-                const {
-                    category,
-                    name,
-                    description,
-                    seller,
-                    image,
-                    price,
-                    quantity
-                } = args
-    
-                const product = new Product({ category, name, description, seller, image, price, quantity }, context);
-    
-                await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
+            const user = await User.findOne(email);
+            const {
+                category,
+                name,
+                description,
+                seller,
+                image,
+                price,
+                quantity
+            } = args
 
-                return product
+            const product = new Product({
+                category,
+                name,
+                description,
+                seller,
+                image,
+                price,
+                quantity
+            }, context);
+
+            await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
+
+            if (user.role !== 'ROLE_SELLER') {
+                throw new AuthenticationError('Must be an approved seller to sell items.');
             }
+
+            return product
         },
         deleteProduct: async (parent, { productId }) => {
-            return Product.findOneAndDelete({ _id: productId });
+            const product = await Product.findOneAndDelete({ _id: productId });
+            const user = await User.findOne(email)
+
+            if (product.seller.toString() !== user._id.toString() &&
+            user.role !== 'ROLE_ADMIN'
+            ) {
+                throw new AuthenticationError('Must be the seller; or Site Admin to Delete products.');
+            }
+
+            return product;            
         },
         deleteOrder: async (parent, { orderId, productId }, context) => {
             if (context.user) {

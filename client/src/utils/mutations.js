@@ -88,7 +88,7 @@ export const ADD_SELLER = gql`
       name: $name
       email: $email
       address: $address
-      products $products
+      products: $products
       phoneNumber: $phoneNumber
     ) {
       token
