@@ -81,7 +81,7 @@ export const ADD_SELLER = gql`
     $name: String!
     $email: String!
     $address: String!
-    #products: [ID]
+    $products: [ID]
     $phoneNumber: String!
   ) {
     addSeller(

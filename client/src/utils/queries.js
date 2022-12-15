@@ -25,16 +25,18 @@ query Products($category: ID) {
 `;
 
 export const QUERY_REVIEW = gql`
-  query Review($product: ID) {
-    review(product: $product) {
+query Review {
+  review {
+    product {
       _id
-      product
-      rating
-      review
-      isRecommended
-      user
     }
+    _id
+    user
+    rating
+    review
+    isRecommended
   }
+}
 `;
 
 export const QUERY_BILLING = gql`
