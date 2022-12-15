@@ -156,7 +156,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Invalid Credentials try again; or sign up.');
+                throw new AuthenticationError('Invalid Credentials try again; or sign-up.');
             }
 
             const token = signToken(user);
