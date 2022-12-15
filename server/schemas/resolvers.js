@@ -137,7 +137,7 @@ const resolvers = {
             if (context.user) {
                 return await User.findByIdAndUpdate(context.user._id, args, { new: true });
             }
-            throw new AuthenticationError('Please Log In to edit your account.')
+            throw new AuthenticationError('Please Log In to edit your account.');
         },
         updateProduct: async (parent, { _id, quantity }) => {
             const decrement = Math.abs(quantity) * -1;
@@ -150,20 +150,20 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('Invalid Credentials try again; or sign up.')
+                throw new AuthenticationError('Invalid Credentials try again; or sign up.');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Invalid Credentials try again; or sign up.')
+                throw new AuthenticationError('Invalid Credentials try again; or sign up.');
             }
 
             const token = signToken(user);
 
             return { token, user };
         },
-        addProduct: async (parent, args, context) => {
+        addProduct: async (parent, args) => {
             const user = await User.findOne(email);
             const {
                 category,
@@ -183,7 +183,7 @@ const resolvers = {
                 image,
                 price,
                 quantity
-            }, context);
+            });
 
             await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
 
