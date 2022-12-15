@@ -110,6 +110,11 @@ const resolvers = {
     Mutation: {
         addCategory: async (parent, args) => {
             const category = await Category.create(args);
+            const user = await User.findOne(email);
+
+            if (user.role !== 'ROLE_ADMIN') {
+                throw new AuthenticationError('Must be Site Administrator to create Categories.');
+            };
 
             return category;
         },
@@ -178,15 +183,7 @@ const resolvers = {
                 quantity
             } = args
 
-            const product = new Product({
-                category,
-                name,
-                description,
-                seller,
-                image,
-                price,
-                quantity
-            });
+            const product = await Product.create(args);
 
             await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
 

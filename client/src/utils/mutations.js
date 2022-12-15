@@ -11,6 +11,15 @@ export const LOGIN = gql`
   }
 `;
 
+export const ADD_CATEGORY = gql`
+  mutation Mutation($name: String) {
+    addCategory(name: $name) {
+      _id
+      name
+    }
+  }
+`;
+
 export const ADD_ORDER = gql`
   mutation AddOrder($products: [ID]!) {
     addOrder(products: $products) {
@@ -118,25 +127,36 @@ export const ADD_REVIEW = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation addProduct(
-    $name: String!
-    $description: String!
-    $seller: ID!
-    $image: String!
-    $quantity: Int
-    $price: Int!
-    $category: Category!
+mutation Mutation(
+  $category: ID,
+  $name: String,
+  $description: String,
+  $seller: String,
+  $image: String,
+  $price: Int,
+  $quantity: Int
   ) {
-    addProduct(
-      name: $name
-      description: $description
-      seller: $seller
-      image: $image
-      quantity: $quantity
-      price: $price
-      category: $category
-    )
+  addProduct(
+    category: $category,
+    name: $name,
+    description: $description,
+    seller: $seller,
+    image: $image,
+    price: $price,
+    quantity: $quantity) {
+    _id
+    name
+    description
+    seller
+    image
+    price
+    quantity
+    category {
+      _id
+      name
+    }
   }
+}
 `;
 
 export const DELETE_PRODUCT = gql`
