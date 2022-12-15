@@ -4,46 +4,47 @@ import { ADD_PRODUCT } from '../../utils/mutations';
 import { Row, Col } from 'react-bootstrap';
 
 
-function SellItem() {
-    const [formState, setFormState] = useState({
-        name: '',
-        description: '',
-        price: '',
-        quantity: '',
-        image: '',
-    });
-    
-    const [addProduct, { error }] = useMutation(ADD_PRODUCT);
+function SellItem(props) {
+    const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '' })
+    const [addProduct] = useMutation(ADD_PRODUCT);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        const mutationResponse = await addProduct({
+            category: formState.category,
+            name: formState.name,
+            description: formState.description,
+            price: formState.price,
+            quantity: formState.quantity,
+            image: formState.image
+        });
+        const data = mutationResponse.data.addProduct;
 
-        try {
-            const { data } = addProduct({
-                variables: { ...formState },
-            });
-
-            //window.location.assign('/');
-        } catch (err) {
-            console.error(err);
-        }
+        return data;
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-
-        if (name === "string" && value.length > 0) {
-            setFormState({ ...formState, [name]: value });
-        } else if (name !== 'String') {
-            setFormState({ ...formState, [name]: value });
-        }
-    }
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    };
 
     return (
         <div className='text-white'>
             <form onSubmit={handleFormSubmit} noValidate>
                 <Row>
-                    <Col xs='12' lg='6'>
+                    <Col>
+                        <input
+                            type='text'
+                            label='Category:'
+                            name='category'
+                            placeholder='Category'
+                            onChange={handleChange}
+                        />
+                    </Col>
+                    <Col>
                         <input
                             type='text'
                             label='Product Name:'
@@ -52,7 +53,7 @@ function SellItem() {
                             onChange={handleChange}
                         />
                     </Col>
-                    <Col xs='12' lg='6'>
+                    <Col>
                         <input
                             type='text'
                             label='Description:'
@@ -61,7 +62,7 @@ function SellItem() {
                             onChange={handleChange}
                         />
                     </Col>
-                    <Col xs='12' lg='6'>
+                    <Col>
                         <input
                             type='number'
                             label='Price:'
@@ -70,7 +71,7 @@ function SellItem() {
                             onChange={handleChange}
                         />
                     </Col>
-                    <Col xs='12' lg='6'>
+                    <Col>
                         <input
                             type='number'
                             label='Quantity:'
@@ -79,7 +80,7 @@ function SellItem() {
                             onChange={handleChange}
                         />
                     </Col>
-                    <Col xs='12' lg='6'>
+                    <Col>
                         <input
                             type='file'
                             label='Upload Image:'

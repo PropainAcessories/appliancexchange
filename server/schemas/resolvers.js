@@ -172,26 +172,15 @@ const resolvers = {
             return { token, user };
         },
         addProduct: async (parent, args) => {
-            const user = await User.findOne(email);
-            const {
-                category,
-                name,
-                description,
-                seller,
-                image,
-                price,
-                quantity
-            } = args
+            try {    
+                const product = await Product.create(args);
 
-            const product = await Product.create(args);
+                await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
 
-            await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
-
-            if (user.role !== 'ROLE_SELLER') {
-                throw new AuthenticationError('Must be an approved seller to sell items.');
+                return product;
+            } catch (error) {
+                console.log(error);
             }
-
-            return product
         },
         deleteProduct: async (parent, { productId }) => {
             const product = await Product.findOneAndDelete({ _id: productId });
@@ -213,6 +202,17 @@ const resolvers = {
                     { new: true }
                 );
             };
+        },
+        deleteCategory: async (parent, { _id }) => {
+            const user = User.findb(email);
+            
+            const category = Category.findByIdAndDelete(_id);
+
+            if (user.role !== 'ROLE_ADMIN') {
+                throw new AuthenticationError('Must be Site Administrator to Do this.');
+            }
+
+            return category;
         },
     },
 };

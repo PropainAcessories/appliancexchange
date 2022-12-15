@@ -12,8 +12,17 @@ export const LOGIN = gql`
 `;
 
 export const ADD_CATEGORY = gql`
-  mutation Mutation($name: String) {
+  mutation addCategory($name: String) {
     addCategory(name: $name) {
+      _id
+      name
+    }
+  }
+`;
+
+export const DELETE_CATEGORY = gql`
+  mutation deleteCategory($category: ID) {
+    deleteCategory(Category: $category) {
       _id
       name
     }
@@ -127,7 +136,7 @@ export const ADD_REVIEW = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-mutation Mutation(
+mutation addProduct(
   $category: ID,
   $name: String,
   $description: String,
