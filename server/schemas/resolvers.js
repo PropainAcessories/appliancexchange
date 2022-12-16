@@ -232,11 +232,16 @@ const resolvers = {
 
             return category;
         },
-        addReview: async (parent, { product } ,context) => {
+        addReview: async (parent, { product }, context) => {
             if (context.user) {
-                const review = Review.create({ product });
+                const review = await Review.create({ product });
 
-                await Product.findByIdAndUpdate(context.product._id, { $push: { reviews: review } });
+                await Product.findByIdAndUpdate(
+                    { _id: product._id },
+                    { $push: { review: review } },
+                    { new: true }
+                );
+                return review;
             }
         }
     },
