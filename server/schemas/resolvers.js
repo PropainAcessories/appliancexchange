@@ -180,20 +180,18 @@ const resolvers = {
                     description,
                     price,
                     quantity,
-                    image,
+                    image
                 } = args
-                console.log('Hello World this error is here', args);
                 try {    
                     const product = await Product.create({
                         category,
                         name,
                         description,
+                        seller: context.user._id,
                         price,
                         quantity,
                         image,
-                        seller: context.user._id
                     });
-    
                     return product;
                 } catch (error) {
                     console.log(error);

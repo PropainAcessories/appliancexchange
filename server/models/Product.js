@@ -14,7 +14,7 @@ const productSchema = new Schema({
     },
     seller: {
         type: Schema.Types.ObjectId,
-        ref: 'Seller',
+        ref: 'User',
         required: true
     },
     image: {

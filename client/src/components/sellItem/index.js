@@ -19,7 +19,9 @@ function SellItem() {
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
+
     useEffect(() => {
+
         if(categoryData) {
             dispatch({
                 type: UPDATE_CATEGORIES,
@@ -58,9 +60,7 @@ function SellItem() {
 
         return data;
     };
-
     const handleChange = (event) => {
-        console.log(event);
         const { name, value } = event.target;
         setFormState({
             ...formState,
