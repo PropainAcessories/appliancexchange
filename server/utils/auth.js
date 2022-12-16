@@ -19,7 +19,6 @@ module.exports = {
             req.user = data
         } catch {
             console.log('Invalid Token.');
-            req.user = {};
         }
     },
     signToken: function ({ email, _id }) {

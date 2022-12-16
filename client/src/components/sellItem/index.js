@@ -132,8 +132,10 @@ function SellItem() {
                 <div className='flex-row flex-end py-1'>
                     <button className='text-white' type='submit'>Sell It!</button>
                 </div>
+                <div className='modal-footer'/>
             </form>
         </div>
+
     );
 
 };
