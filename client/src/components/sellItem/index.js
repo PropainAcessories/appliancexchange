@@ -10,8 +10,6 @@ import {
 } from '../../utils/actions';
 
 
-//TODO IF YOU CAN'T GET THIS TO FUCKING WORK AT LEAST MAKE IT A COOL UI
-
 function SellItem() {
 
     const [state, dispatch] = useStoreContext();
