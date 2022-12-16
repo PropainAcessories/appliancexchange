@@ -72,50 +72,63 @@ function SellItem() {
     return (
         <div className='text-white'>
             <form onSubmit={handleFormSubmit} noValidate>
-                        <select onChange={handleChange} name='category'>
-                            {categories.map((item) => (
-                                <option
-                                key={item._id}
-                                value={item._id}>
-                                    {item.name}
-                                </option>
-                            ))}
-                        </select>
-                        <input
-                            type='text'
-                            label='Product Name:'
-                            name='name'
-                            placeholder='Product-Name'
-                            onChange={handleChange}
-                        />
-                        <input
-                            type='text'
-                            label='Description:'
-                            name='description'
-                            placeholder='Describe your product.'
-                            onChange={handleChange}
-                        />
-                        <input
-                            type='number'
-                            label='Price:'
-                            name='price'
-                            placeholder='How much are you selling it for?'
-                            onChange={handleChange}
-                        />
-                        <input
-                            type='number'
-                            label='Quantity:'
-                            name='quantity'
-                            placeholder='How many are you selling?'
-                            onChange={handleChange}
-                        />
-                        <input
-                            type='file'
-                            label='Upload Image:'
-                            name='image'
-                            placeholder='Please Upload an Image'
-                            onChange={handleChange}
-                        />
+                <div className='flex-row space-between py-2'>
+                    <label htmlFor='Category'>Category:</label>
+                    <select onChange={handleChange} name='category'>
+                        {categories.map((item) => (
+                            <option
+                            key={item._id}
+                            value={item._id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className='flex-row space-between py-2'>
+                    <label htmlFor='name'>Product-Name:</label>
+                    <input
+                        type='text'
+                        name='name'
+                        placeholder='Product-Name'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='flex-row space-between py-2'>
+                    <label htmlFor='description'>Product-Description:</label>
+                    <input
+                        type='text'
+                        name='description'
+                        placeholder='Describe your product.'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='flex-row space-between py-2'>
+                    <label htmlFor='price'>Price:</label>
+                    <input
+                        type='number'
+                        name='price'
+                        placeholder='How much are you selling it for?'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='flex-row space-between py-2'>
+                    <label htmlFor='quantity'>Quantity:</label>
+                    <input
+                        type='number'
+                        name='quantity'
+                        placeholder='How many are you selling?'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='flex-row space-between py-2'>
+                <label htmlFor='Name'>Upload an Image:</label>
+                    <input
+                        type='file'
+                        name='image'
+                        placeholder='Please Upload an Image'
+                        onChange={handleChange}
+                    />
+                </div>
                 <div className='flex-row flex-end py-1'>
                     <button className='text-white' type='submit'>Sell It!</button>
                 </div>
