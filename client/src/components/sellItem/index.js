@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_PRODUCT } from '../../utils/mutations';
-import { Row, Col } from 'react-bootstrap';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { idbPromise } from '../../utils/helpers';
