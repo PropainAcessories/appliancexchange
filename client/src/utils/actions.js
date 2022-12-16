@@ -12,6 +12,7 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_REVIEWS = 'UPDATE_REVIEWS';
 export const POST_PRODUCT = 'POST_PRODUCT';
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const UPDATE_USER = 'UPDATE_USER';
 
 // EXPORT MOAR!

@@ -18,8 +18,6 @@ function SellItem() {
     const { categories } = state;
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
-
-
     useEffect(() => {
 
         if(categoryData) {
@@ -40,7 +38,7 @@ function SellItem() {
         }
     }, [categoryData, loading, dispatch]);
 
-    const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '' })
+    const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '', seller: '' })
     const [addProduct] = useMutation(ADD_PRODUCT);
 
 
@@ -53,7 +51,8 @@ function SellItem() {
                 description: formState.description,
                 price: Number(formState.price),
                 quantity: Number(formState.quantity),
-                image: formState.image
+                image: formState.image,
+                seller: formState.seller
             }
         });
         const data = mutationResponse.data.addProduct;
@@ -76,10 +75,12 @@ function SellItem() {
                 <div className='flex-row space-between py-2'>
                     <label htmlFor='Category'>Category:</label>
                     <select onChange={handleChange} name='category'>
+                        <option>-Select Category-</option>
                         {categories.map((item) => (
                             <option
                             key={item._id}
-                            value={item._id}>
+                            value={item._id}
+                            >
                                 {item.name}
                             </option>
                         ))}

@@ -174,11 +174,13 @@ const resolvers = {
         },
         addProduct: async (parent, args, context) => {
             if (context.user) {
+                const user = await User.findById(context.user._id);
                 const {
                     category,
                     name,
                     description,
                     price,
+                    seller,
                     quantity,
                     image
                 } = args
@@ -187,7 +189,7 @@ const resolvers = {
                         category,
                         name,
                         description,
-                        seller: context.user._id,
+                        seller,
                         price,
                         quantity,
                         image,
