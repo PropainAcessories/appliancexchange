@@ -198,7 +198,6 @@ const resolvers = {
                     console.log(error);
                 }
             }
-
         },
         deleteProduct: async (parent, { productId }) => {
             const product = await Product.findOneAndDelete({ _id: productId });
