@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_PRODUCT } from '../../utils/mutations';
+import { NavLink } from 'react-router-dom';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { idbPromise } from '../../utils/helpers';
@@ -68,7 +69,9 @@ function SellItem() {
     };
 
     return (
-        <div className='text-white'>
+        <div className='container text-white'>
+            <NavLink to='/'>Back to Products</NavLink>
+            <h2>Sell Your Stuff!</h2>
             <form onSubmit={handleFormSubmit} noValidate>
                 <div className='flex-row space-between py-2'>
                     <label htmlFor='Category'>Category:</label>
@@ -132,8 +135,8 @@ function SellItem() {
                 </div>
                 <div className='modal-footer'/>
             </form>
-        </div>
 
+        </div>
     );
 
 };
