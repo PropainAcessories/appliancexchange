@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
-// Import stuff they're selling to when you get to it.
-// Add other constraints to password later.
-// Payment stuff likely goes here
+
 const userSchema = new Schema({
     firstName: {
         type: String,
