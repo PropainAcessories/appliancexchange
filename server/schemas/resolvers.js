@@ -45,7 +45,7 @@ const resolvers = {
         },
         seller: async (parent, args, context) => {
             if (context.seller) {
-                const seller = await Seller.findById(context.seller._id).populate({
+                const seller = await Seller.findById(context.user._id).populate({
                     path: 'orders.products',
                     populate: 'category'
                 });
@@ -171,16 +171,34 @@ const resolvers = {
 
             return { token, user };
         },
-        addProduct: async (parent, args) => {
-            try {    
-                const product = await Product.create(args);
-
-                await Category.findByIdAndUpdate(context.category._id, { $push: { products: product } });
-
-                return product;
-            } catch (error) {
-                console.log(error);
+        addProduct: async (parent, args, context) => {
+            if (context.user) {
+                const {
+                    category,
+                    name,
+                    description,
+                    price,
+                    quantity,
+                    image,
+                } = args
+                console.log('Hello World this error is here', args);
+                try {    
+                    const product = await Product.create({
+                        category,
+                        name,
+                        description,
+                        price,
+                        quantity,
+                        image,
+                        seller: context.user._id
+                    });
+    
+                    return product;
+                } catch (error) {
+                    console.log(error);
+                }
             }
+
         },
         deleteProduct: async (parent, { productId }) => {
             const product = await Product.findOneAndDelete({ _id: productId });
@@ -204,7 +222,7 @@ const resolvers = {
             };
         },
         deleteCategory: async (parent, { _id }) => {
-            const user = User.findb(email);
+            const user = User.findOne(email);
             
             const category = Category.findByIdAndDelete(_id);
 

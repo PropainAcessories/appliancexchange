@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const secret = '3000 Black Jets of Allah.';
-const expiration = '2h';
+const expiration = '30d';
 
 module.exports = {
     authMiddleware: function ({ req }) {
-        let token = req.body || req.query.token || req.headers.authorization;
-
+        let token = req.headers.authorization;
+        console.log(token);
         if (req.headers.authorization) {
             token = token.toString().split(' ').pop().trim();
         }
@@ -18,7 +18,8 @@ module.exports = {
             const { data } = jwt.verify(token, secret, { maxAge: expiration });
             req.user = data
         } catch {
-            console.log('Invalid Token.')
+            console.log('Invalid Token.');
+            req.user = {};
         }
     },
     signToken: function ({ email, _id }) {

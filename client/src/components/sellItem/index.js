@@ -1,22 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
+import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_PRODUCT } from '../../utils/mutations';
 import { Row, Col } from 'react-bootstrap';
+import { QUERY_CATEGORIES } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
+import { idbPromise } from '../../utils/helpers';
+import {
+    UPDATE_CATEGORIES,
+} from '../../utils/actions';
+
+
 
 
 function SellItem(props) {
+
+    const [state, dispatch] = useStoreContext();
+
+    const { categories } = state;
+
+    const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+
+    useEffect(() => {
+        if(categoryData) {
+            dispatch({
+                type: UPDATE_CATEGORIES,
+                categories: categoryData.categories,
+            });
+            categoryData.categories.forEach((category) => {
+                idbPromise('categories', 'put', category);
+            });
+        } else if (!loading) {
+            idbPromise('categories', 'get').then((categories) => {
+                dispatch({
+                    type: UPDATE_CATEGORIES,
+                    categories: categories
+                });
+            });
+        }
+    }, [categoryData, loading, dispatch]);
+
     const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '' })
     const [addProduct] = useMutation(ADD_PRODUCT);
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const mutationResponse = await addProduct({
-            category: formState.category,
-            name: formState.name,
-            description: formState.description,
-            price: formState.price,
-            quantity: formState.quantity,
-            image: formState.image
+            variables: {
+                category: formState.category,
+                name: formState.name,
+                description: formState.description,
+                price: Number(formState.price),
+                quantity: Number(formState.quantity),
+                image: formState.image
+            }
         });
         const data = mutationResponse.data.addProduct;
 
@@ -24,6 +62,7 @@ function SellItem(props) {
     };
 
     const handleChange = (event) => {
+        console.log(event);
         const { name, value } = event.target;
         setFormState({
             ...formState,
@@ -36,13 +75,15 @@ function SellItem(props) {
             <form onSubmit={handleFormSubmit} noValidate>
                 <Row>
                     <Col>
-                        <input
-                            type='text'
-                            label='Category:'
-                            name='category'
-                            placeholder='Category'
-                            onChange={handleChange}
-                        />
+                        <select onChange={handleChange} name='category'>
+                            {categories.map((item) => (
+                                <option
+                                key={item._id}
+                                value={item._id}>
+                                    {item.name}
+                                </option>
+                            ))}
+                        </select>
                     </Col>
                     <Col>
                         <input
