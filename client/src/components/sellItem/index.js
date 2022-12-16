@@ -121,7 +121,7 @@ function SellItem() {
                     />
                 </div>
                 <div className='flex-row space-between py-2'>
-                <label htmlFor='Name'>Upload an Image:</label>
+                    <label htmlFor='Name'>Upload an Image:</label>
                     <input
                         type='file'
                         name='image'
