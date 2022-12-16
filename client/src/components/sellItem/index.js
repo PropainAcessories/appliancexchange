@@ -11,7 +11,7 @@ import {
 } from '../../utils/actions';
 
 
-
+//TODO IF YOU CAN'T GET THIS TO FUCKING WORK AT LEAST MAKE IT A COOL UI
 
 function SellItem(props) {
 
@@ -73,8 +73,6 @@ function SellItem(props) {
     return (
         <div className='text-white'>
             <form onSubmit={handleFormSubmit} noValidate>
-                <Row>
-                    <Col>
                         <select onChange={handleChange} name='category'>
                             {categories.map((item) => (
                                 <option
@@ -84,8 +82,6 @@ function SellItem(props) {
                                 </option>
                             ))}
                         </select>
-                    </Col>
-                    <Col>
                         <input
                             type='text'
                             label='Product Name:'
@@ -93,8 +89,6 @@ function SellItem(props) {
                             placeholder='Product-Name'
                             onChange={handleChange}
                         />
-                    </Col>
-                    <Col>
                         <input
                             type='text'
                             label='Description:'
@@ -102,8 +96,6 @@ function SellItem(props) {
                             placeholder='Describe your product.'
                             onChange={handleChange}
                         />
-                    </Col>
-                    <Col>
                         <input
                             type='number'
                             label='Price:'
@@ -111,8 +103,6 @@ function SellItem(props) {
                             placeholder='How much are you selling it for?'
                             onChange={handleChange}
                         />
-                    </Col>
-                    <Col>
                         <input
                             type='number'
                             label='Quantity:'
@@ -120,8 +110,6 @@ function SellItem(props) {
                             placeholder='How many are you selling?'
                             onChange={handleChange}
                         />
-                    </Col>
-                    <Col>
                         <input
                             type='file'
                             label='Upload Image:'
@@ -129,8 +117,6 @@ function SellItem(props) {
                             placeholder='Please Upload an Image'
                             onChange={handleChange}
                         />
-                    </Col>               
-                </Row>
                 <div className='flex-row flex-end py-1'>
                     <button className='text-white' type='submit'>Sell It!</button>
                 </div>
