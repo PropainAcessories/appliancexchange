@@ -12,8 +12,7 @@ import {
     TOGGLE_REVIEWS,
     TOGGLE_CART,
     DELETE_PRODUCT,
-    UPDATE_USER,
-    POST_PRODUCT
+    UPDATE_USER
 } from './actions';
 // Make additions for Users to sell products as well.
 export const reducer = (state, action) => {
@@ -23,12 +22,6 @@ export const reducer = (state, action) => {
                 ...state,
                 user: [...state.user, action.payload]
             }
-        case POST_PRODUCT:
-            const newProduct = { ...action.payload };
-            return {
-                ...state,
-                products: [...state.products, newProduct],
-            };
         case DELETE_PRODUCT:
             return {
                 ...state,

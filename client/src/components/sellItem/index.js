@@ -17,9 +17,9 @@ function SellItem() {
 
     const { categories } = state;
 
+
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
     useEffect(() => {
-
         if(categoryData) {
             dispatch({
                 type: UPDATE_CATEGORIES,
@@ -44,19 +44,22 @@ function SellItem() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const mutationResponse = await addProduct({
-            variables: {
-                category: formState.category,
-                name: formState.name,
-                description: formState.description,
-                price: Number(formState.price),
-                quantity: Number(formState.quantity),
-                image: formState.image,
-            }
-        });
-        const data = mutationResponse.data.addProduct;
-
-        return data;
+        try {
+            const mutationResponse = await addProduct({
+                variables: {
+                    category: formState.category,
+                    name: formState.name,
+                    description: formState.description,
+                    price: Number(formState.price),
+                    quantity: Number(formState.quantity),
+                    image: formState.image,
+                }
+            });
+            const data = mutationResponse.data.addProduct;
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     };
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -129,6 +132,9 @@ function SellItem() {
                         placeholder='Please Upload an Image'
                         onChange={handleChange}
                     />
+                </div>
+                <div className='flex-row space-between py-2'>
+
                 </div>
                 <div className='flex-row flex-end py-1'>
                     <button className='text-white' type='submit'>Sell It!</button>

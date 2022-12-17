@@ -103,6 +103,7 @@ export const QUERY_CATEGORIES = gql`
 export const QUERY_USER = gql`
   query User {
     user {
+      _id
       firstName
       lastName
       email

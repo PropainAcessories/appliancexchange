@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Order, Product, Category, Seller, Review } = require('../models');
+const { User, Order, Product, Category, Review } = require('../models');
 const { signToken } = require('../utils/auth');
 require('dotenv').config;
 const stripe = require('stripe')(process.env.STRIPE_KEY);
@@ -109,16 +109,12 @@ const resolvers = {
         }
     },
     Mutation: {
-        addCategory: async (parent, args) => {
-            const category = await Category.create(args);
-            const user = await User.findOne(email);
-
-            if (user.role !== 'ROLE_ADMIN') {
-                throw new AuthenticationError('Must be Site Administrator to create Categories.');
-            };
-
-            return category;
-        },
+        addCategory: async (parent, args, context) => {
+            if (context.user) {
+                const category = await Category.create(args);
+                return category;
+            }
+        }, 
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
@@ -174,24 +170,26 @@ const resolvers = {
         },
         addProduct: async (parent, args, context) => {
             if (context.user) {
+                console.log(context.user)
                 const {
                     category,
                     name,
                     description,
                     price,
-                    seller,
                     quantity,
                     image
                 } = args
-                try {    
+                try {
                     const product = await Product.create({
                         category,
                         name,
                         description,
+                        seller: context.user._id,
                         price,
                         quantity,
                         image,
                     });
+                    console.log(product.seller)
                     return product;
                 } catch (error) {
                     console.log(error);
@@ -202,7 +200,7 @@ const resolvers = {
             const product = await Product.findOneAndDelete({ _id: productId });
             const user = await User.findOne(email)
 
-            if (product.seller.toString() !== user._id.toString() &&
+            if (product.seller.toString() !== user._id.toString() ||
             user.role !== 'ROLE_ADMIN'
             ) {
                 throw new AuthenticationError('Must be the seller; or Site Admin to Delete products.');
