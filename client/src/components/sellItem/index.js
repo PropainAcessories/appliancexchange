@@ -38,7 +38,7 @@ function SellItem() {
         }
     }, [categoryData, loading, dispatch]);
 
-    const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '', seller: '' })
+    const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '' })
     const [addProduct] = useMutation(ADD_PRODUCT);
 
 
@@ -52,7 +52,6 @@ function SellItem() {
                 price: Number(formState.price),
                 quantity: Number(formState.quantity),
                 image: formState.image,
-                seller: formState.seller
             }
         });
         const data = mutationResponse.data.addProduct;

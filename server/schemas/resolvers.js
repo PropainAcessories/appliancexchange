@@ -174,7 +174,6 @@ const resolvers = {
         },
         addProduct: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id);
                 const {
                     category,
                     name,
@@ -189,7 +188,6 @@ const resolvers = {
                         category,
                         name,
                         description,
-                        seller,
                         price,
                         quantity,
                         image,

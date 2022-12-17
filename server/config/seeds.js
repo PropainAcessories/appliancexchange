@@ -1,21 +1,9 @@
 const db = require('./connection');
-const { User, Product, Category, Seller } = require('../models');
+const { User, Product, Category } = require('../models');
 require('dotenv').config();
 
 
 db.once('open', async () => {
-
-    await Seller.deleteMany();
-    const sellers = await Seller.create({
-        name: 'HenryEvery LLC',
-        email: 'hhh8@gmail.com',
-        address: 'LOLNO',
-        products: [],
-        phoneNumber: '256-555-5555'
-    });
-
-    console.log('seller seeded')
-
     await Category.deleteMany();
     //Insert categories later
     const categories = await Category.insertMany([
@@ -39,7 +27,7 @@ db.once('open', async () => {
             image: 'Laptop.jpg',
             category: categories[0]._id,
             price: 75.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -48,7 +36,7 @@ db.once('open', async () => {
             image: 'Desktop.jpg',
             category: categories[1]._id,
             price: 45.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -57,7 +45,7 @@ db.once('open', async () => {
             image: 'Iphone.jpg',
             category: categories[3]._id,
             price: 60.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -66,7 +54,7 @@ db.once('open', async () => {
             image: 'SmartTv.jpg',
             category: categories[4]._id,
             price: 100.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -75,7 +63,7 @@ db.once('open', async () => {
             image: 'monitor.jpg',
             category: categories[2]._id,
             price: 100.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -84,7 +72,7 @@ db.once('open', async () => {
             image: 'FunnyLamp.jpg',
             category: categories[5]._id,
             price: 15.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         },
         {
@@ -93,7 +81,7 @@ db.once('open', async () => {
             image: 'CuttingBoard.jpg',
             category: categories[6]._id,
             price: 5.00,
-            seller: sellers._id,
+            seller: users[1]._id,
             quantity: 1
         }
     ]);
@@ -102,36 +90,37 @@ db.once('open', async () => {
 
     await User.deleteMany();
     //Insert Users
-    await User.create({
-        firstName: 'Henry',
-        lastName: 'Howe',
-        email: 'hhc3h8@gmail.com',
-        phoneNumber: '256-555-5555',
-        role: 'ROLE_ADMIN',
-        password: 'password'
-    });
-    await User.create({
-        firstName: 'Henry',
-        lastName: 'Every',
-        email: 'Pirate@ship.com',
-        phoneNumber: '256-555-5555',
-        role: 'ROLE_SELLER',
-        password: 'password'
-    });
-
-    await User.create({
-        firstName: 'Oliver',
-        lastName: 'Levasseur',
-        email: 'findit@gold.com',
-        phoneNumber: '256-555-5555',
-        role: 'ROLE_MEMBER',
-        password: 'password',
-        orders: [
-            {
-                products: [products[0]._id, products[1]._id]
-            }
-        ]
-    });
+    const users = await User.insertMany([
+        {
+            firstName: 'Henry',
+            lastName: 'Howe',
+            email: 'hhc3h8@gmail.com',
+            phoneNumber: '256-555-5555',
+            role: 'ROLE_ADMIN',
+            password: 'password'
+        },
+        {   
+            firstName: 'Henry',
+            lastName: 'Every',
+            email: 'Pirate@ship.com',
+            phoneNumber: '256-555-5555',
+            role: 'ROLE_SELLER',
+            password: 'password'
+        },
+        {
+            firstName: 'Oliver',
+            lastName: 'Levasseur',
+            email: 'findit@gold.com',
+            phoneNumber: '256-555-5555',
+            role: 'ROLE_MEMBER',
+            password: 'password',
+            orders: [
+                {
+                    products: [products[0]._id, products[1]._id]
+                }
+            ]
+        }
+    ])
 
     console.log('users seeded');
 
