@@ -1,7 +1,7 @@
 import React from "react";
 import SellItem from '../components/Sell-Item';
 
-function sellItem() {
+function SellItems() {
     return (
         <div className="container">
             <SellItem />
@@ -9,4 +9,4 @@ function sellItem() {
     );
 };
 
-export default sellItem;
+export default SellItems;
