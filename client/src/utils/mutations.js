@@ -140,7 +140,6 @@ mutation addProduct(
   $category: ID,
   $name: String,
   $description: String,
-  $seller: ID,
   $image: String,
   $price: Float,
   $quantity: Int
@@ -149,7 +148,6 @@ mutation addProduct(
     category: $category,
     name: $name,
     description: $description,
-    seller: $seller,
     image: $image,
     price: $price,
     quantity: $quantity) {

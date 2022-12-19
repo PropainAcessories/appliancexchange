@@ -3,11 +3,12 @@ import { useMutation } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_PRODUCT } from '../../utils/mutations';
 import { NavLink } from 'react-router-dom';
-import { QUERY_CATEGORIES } from '../../utils/queries';
+import { QUERY_CATEGORIES, QUERY_USER } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { idbPromise } from '../../utils/helpers';
 import {
     UPDATE_CATEGORIES,
+    UPDATE_USER
 } from '../../utils/actions';
 
 
@@ -17,9 +18,16 @@ function SellItem() {
 
     const { categories } = state;
 
+    const { userData } = useQuery(QUERY_USER);
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
     useEffect(() => {
+        if (userData) {
+            dispatch({
+                type: UPDATE_USER,
+                user: userData.UPDATE_USER
+            })
+        }
         if(categoryData) {
             dispatch({
                 type: UPDATE_CATEGORIES,
@@ -36,7 +44,7 @@ function SellItem() {
                 });
             });
         }
-    }, [categoryData, loading, dispatch]);
+    }, [categoryData, userData, loading, dispatch]);
 
     const [formState, setFormState] = useState({ category: '', name: '', description: '', price: '', quantity: '', image: '' })
     const [addProduct] = useMutation(ADD_PRODUCT);
