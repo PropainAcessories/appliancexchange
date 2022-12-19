@@ -1,5 +1,5 @@
 import React from "react";
-import SellItem from '../components/Sell-Item';
+import SellItem from '../components/SellItem';
 
 function SellItems() {
     return (
