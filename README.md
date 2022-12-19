@@ -22,7 +22,7 @@
   🐔[Support](#support)
 
   ## Implementation
-  🐔It is supposed to be a full stack application but it doesn't work. So it was a way to give me headache.
+  🐔It is supposed to be a full stack application but it doesn't work. So it was a way to give me a headache.
 
   ## Usage
   🐔Ecommerce/selling user information but my evil plot was thwarted.
