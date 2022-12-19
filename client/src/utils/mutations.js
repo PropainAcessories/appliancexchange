@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-
 // TO DO ADD STUFF SO GUYS CAN SELL SHIT
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -95,6 +94,29 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_SELLER = gql`
+  mutation addSeller(
+    $name: String!
+    $email: String!
+    $address: String!
+    $products: [ID]
+    $phoneNumber: String!
+  ) {
+    addSeller(
+      name: $name
+      email: $email
+      address: $address
+      products: $products
+      phoneNumber: $phoneNumber
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
 export const ADD_REVIEW = gql`
   mutation addReview(
     $user: [ID]!
@@ -144,7 +166,6 @@ mutation addProduct(
     }
   }
 }
-
 `;
 
 export const DELETE_PRODUCT = gql`

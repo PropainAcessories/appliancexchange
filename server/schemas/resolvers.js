@@ -41,13 +41,22 @@ const resolvers = {
 
                 return user;
             }
-            throw new AuthenticationError('You need to be logged in!');
+
+            throw new AuthenticationError('Please Log in or Create an Account.');
         },
-        me: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOne({ _id: context.user._id });
-            };
-            throw new AuthenticationError('You need to be logged in!');
+        seller: async (parent, args, context) => {
+            if (context.seller) {
+                const seller = await Seller.findById(context.user._id).populate({
+                    path: 'orders.products',
+                    populate: 'category'
+                });
+
+                seller.orders.sort((a,b) => b.purchaseDate - a.purchaseDate);
+
+                return seller;
+            }
+            
+            throw new AuthenticationError('Log in please.');
         },
         order: async (parent, { _id }, context) => {
             if (context.user) {
@@ -87,6 +96,7 @@ const resolvers = {
                     quantity: 1
                 });
             }
+
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items,
@@ -110,6 +120,12 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        addSeller: async (parent, args) => {
+            const seller = await Seller.create(args);
+            const token = signToken(seller);
+
+            return { token, seller };
         },
         addOrder: async (parent, { products }, context) => {
             if (context.user) {
@@ -173,13 +189,7 @@ const resolvers = {
                         quantity,
                         image,
                     });
-                    const user = await User.findOneAndUpdate(
-                        { _id: context.user._id },
-                        { $pull: { products: { product } } },
-                        { new: true }
-                    );
-                    return user;
-
+                    console.log(product.seller)
                     return product;
                 } catch (error) {
                     console.log(error);

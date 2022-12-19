@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_PRODUCT } from '../../utils/mutations';
-import { QUERY_ME } from '../../utils/queries';
 import { NavLink } from 'react-router-dom';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -10,8 +9,6 @@ import { idbPromise } from '../../utils/helpers';
 import {
     UPDATE_CATEGORIES,
 } from '../../utils/actions';
-import Auth from '../../utils/auth';
-
 
 
 function SellItem() {
@@ -20,10 +17,6 @@ function SellItem() {
 
     const { categories } = state;
 
-    const UserData = useQuery(QUERY_ME)
-
-
-    console.log(UserData);
 
     const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
     useEffect(() => {
@@ -80,7 +73,7 @@ function SellItem() {
         <div className='container text-white'>
             <NavLink to='/'>Back to Products</NavLink>
             <h2>Sell Your Stuff!</h2>
-                <form onSubmit={handleFormSubmit} noValidate>
+            <form onSubmit={handleFormSubmit} noValidate>
                 <div className='flex-row space-between py-2'>
                     <label htmlFor='Category'>Category:</label>
                     <select onChange={handleChange} name='category'>
@@ -140,17 +133,15 @@ function SellItem() {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    {Auth.loggedIn() ? (
-                        <div className='flex-row flex-end py-1'>
-                            <button className='text-white' type='submit'>Sell It!</button>
-                        </div>
-                    ) : (
-                        <span>(Please Log-In to proceed.)</span>
-                    )}
+                <div className='flex-row space-between py-2'>
+
+                </div>
+                <div className='flex-row flex-end py-1'>
+                    <button className='text-white' type='submit'>Sell It!</button>
                 </div>
                 <div className='modal-footer'/>
             </form>
+
         </div>
     );
 

@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Product, Category, Billing, Review } = require('../models');
+const { User, Product, Category, Seller } = require('../models');
 require('dotenv').config();
 
 
@@ -107,7 +107,7 @@ db.once('open', async () => {
         role: 'ROLE_ADMIN',
         password: 'password'
     });
-    const user = await User.create({
+    await User.create({
         firstName: 'Oliver',
         lastName: 'Levasseur',
         email: 'findit@gold.com',
@@ -122,77 +122,6 @@ db.once('open', async () => {
     });
 
     console.log('users seeded');
-    
-    Review.deleteMany();
 
-    await Review.insertMany([
-        {
-            product: products[0]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[1]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[2]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[3]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[4]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[5]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        },
-        {
-            product: products[6]._id,
-            user: user[0]._id,
-            rating: 10,
-            review: "test",
-            isRecommended: true
-        }
-    ]);
-
-    console.log('Reviews seeded');
-
-    Billing.deleteMany();
-
-    await Billing.create([
-        {
-            user: user[0]._id,
-            address: 'LOLNO',
-            city: 'LMFAO',
-            state: 'THERE ARE 3 STATES OF MATTER',
-            zipcode: 'Zippers go Up bro.',
-            isDefault: true,
-        }
-    ]);
-
-    console.log('Billing Info Seeded.');
-    
     process.exit();
 });
