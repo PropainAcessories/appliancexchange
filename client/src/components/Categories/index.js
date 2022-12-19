@@ -43,8 +43,8 @@ function Categories() {
     };
     // Make this better Dropdownlist/Searchbar please.
     return (
-        <div>
-            <h2>Browse Categories</h2>
+        <div className='container'>
+            <h2>Categories</h2>
             {categories.map((item) => (
                 <button
                 key={item._id}
