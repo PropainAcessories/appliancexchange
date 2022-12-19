@@ -26,6 +26,13 @@ const userSchema = new Schema({
         type: String,
         default: 'ROLE_MEMBER',
     },
+    products:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+            default: null
+        }
+    ],
     billing: {
         type: Schema.Types.ObjectId,
         ref: 'Billing',

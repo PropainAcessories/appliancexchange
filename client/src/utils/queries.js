@@ -24,6 +24,25 @@ query Products($category: ID) {
 }
 `;
 
+export const QUERY_ME = gql`
+query Me {
+  me {
+    _id
+    firstName
+    lastName
+    email
+    products {
+      _id
+      name
+      description
+      price
+      quantity
+      image
+    }
+  }
+}
+`;
+
 export const QUERY_REVIEW = gql`
 query Review {
   review {
@@ -31,7 +50,12 @@ query Review {
       _id
     }
     _id
-    user
+    user {
+      _id
+      firstName
+      lastName
+      email
+    }
     rating
     review
     isRecommended
@@ -51,18 +75,6 @@ export const QUERY_BILLING = gql`
       isDefault
       created
       updated
-    }
-  }
-`;
-
-export const QUERY_SELLER = gql `
-  query Seller {
-    seller {
-      _id
-      address
-      email
-      name
-      phoneNumber
     }
   }
 `;
