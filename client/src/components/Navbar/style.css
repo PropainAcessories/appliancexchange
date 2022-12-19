@@ -1,8 +1,34 @@
-* {
+.navbar {
+    overflow: auto;
+    padding: 0 1%;
+    min-height: 9vh;
+    background: #990d6a;
+}
+
+.navTitle a {
     text-decoration: none;
 }
-.navbar__link--active {
-    background-color: #17ee0f;
-    color: black;
-    list-style: none;
+
+.navContainer a {
+    float: left;
+    text-align: center;
+    padding: 15px 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.navTitle {
+    float: left;
+    padding: 15px 15px;
+}
+
+.navContainer {
+    float: right;
+    padding: 15px 15px;
 }

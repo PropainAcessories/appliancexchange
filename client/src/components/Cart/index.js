@@ -63,7 +63,7 @@ const Cart = () => {
         return (
             <div className='cart-closed' onClick={toggleCart}>
                 <span role='img' aria-label='trash'>
-                    🛒 <h3>Click To Show Cart.</h3>
+                   <h3>Click Text to Show Cart.</h3>
                 </span>
             </div>
         );
@@ -87,7 +87,7 @@ const Cart = () => {
                         {Auth.loggedIn() ? (
                             <button onClick={submitCheckout}>Checkout</button>
                         ) : (
-                            <span>(Please Log-In to proceed.)</span>
+                            <span>(Please Log-In to proceed to checkout.)</span>
                         )}
                     </div>
                 </div>

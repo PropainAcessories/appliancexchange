@@ -64,7 +64,7 @@ function NavBar () {
   }
 
   return (
-    <div className='flex-row px-1'>
+    <div className='navbar flex-row px-1'>
         <h2 className='navTitle'>
             <NavLink to='/'>
                 ApplianceXpress

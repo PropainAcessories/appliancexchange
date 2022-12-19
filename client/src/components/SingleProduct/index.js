@@ -13,7 +13,6 @@ function SingleProduct(item) {
         name,
         _id,
         price,
-        seller,
         quantity
     } = item;
 
@@ -48,7 +47,6 @@ function SingleProduct(item) {
             <div>
                 <div className="text-white">{quantity} {plurals('item', quantity)} In Stock</div>
                 <span className="text-white">${price}</span>
-                <p className="text-white">${seller}</p>
             </div>
             <button className="ctgBtn text-white" onClick={addToCart}>Add to Cart</button>
         </div>
