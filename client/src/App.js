@@ -11,7 +11,7 @@ import SingleItem from './pages/SingleItem';
 import Nothing from './pages/Nothing';
 import Profile from './pages/Profile';
 import CartPage from './pages/CartPage';
-import SellItems from './pages/SellItem'
+import SellItems from './pages/SellItem';
 // TODO Import something from GlobalState after you make it.
 import { StoreProvider } from './utils/GlobalState';
 
